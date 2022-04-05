@@ -8,36 +8,67 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>INSERT DOCUMENT TITLE</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Ubuntu:ital,wght@0,300;0,400;0,500;0,700;1,300;1,400;1,500;1,700&display=swap" rel="stylesheet">
+    <title>Quizapalooza Web Application</title>
+    <meta name="description" content="An online Web Application for taking quizes.">
+    <meta name="keywords" content="quizapalooza, online quiz app, web application quiz, online quiz, web quiz app, eCommerce quiz">
 </head>
 
 <body>
     <header>
-        ...
+        <h1>Quizapalooza</h1>
+        <h2>An Online Quiz Web Application</h2>
     </header>
 
     <main>
         <article>
-            <section class = "section1">
-                ...
+            <h2>eCommerce Quiz</h2>
+            
+            <section id="Question_One" class = "question hidden active-question">
+                <h3>Question 1 of 3</h3>
+                <form action="">
+                    <h4>Which of the following is not a real eCommerce platform?</h4>
+                    <input type="radio" id="Shopify" name="real-eCommerce-platform" value="Shopify">
+                    <label for="Shopify">Shopify</label><br>
+                    <input type="radio" id="WooCommerce" name="real-eCommerce-platform" value="WooCommerce">
+                    <label for="WooCommerce">WooCommerce</label><br>
+                    <input type="radio" id="ShopCommerce" name="real-eCommerce-platform" value="ShopCommerce">
+                    <label for="ShopCommerce">ShopCommerce</label><br>
+                    <input type="radio" id="BigCommerce" name="real-eCommerce-platform" value="BigCommerce">
+                    <label for="BigCommerce">BigCommerce</label><br>
+                </form>
             </section>
-            <section class = "section2">
-                ...
-            </section>
-            <section class = "section3">
-                ...
-            </section>
-        </article>
 
-        <article>
-            <section class = "section1">
-                ...
+            <section id="Question_Two" class = "question hidden">
+                <h3>Question 2 of 3</h3>
+                <form action="">
+                    <h4>If Shopify is so good, why are Shopify developers necessary?</h4>
+                    <input type="radio" id="To_Save" name="why-shopify-devs" value="To_Save">
+                    <label for="To_Save">To save time on things like store setups and migrations</label><br>
+                    <input type="radio" id="To_Extend" name="why-shopify-devs" value="To_Extend">
+                    <label for="To_Extend">To extend the limited design options and functionalities of themes with custom code</label><br>
+                    <input type="radio" id="To_Provide" name="why-shopify-devs" value="To_Provide">
+                    <label for="To_Provide">To provide support with a deep understanding of how the platform works and what its limitations are</label><br>
+                    <input type="radio" id="All_Above" name="why-shopify-devs" value="All_Above">
+                    <label for="All_Above">All the above</label><br>
+                </form>
             </section>
-            <section class = "section2">
-                ...
-            </section>
-            <section class = "section3">
-                ...
+
+            <section id="Question_Three" class = "question hidden">
+                <h3>Question 3 of 3</h3>
+                <form action="">
+                    <h4>Which of the following is true about Shopify developers?</h4>
+                    <input type="radio" id="Paid_Well" name="true-shopify-devs" value="Paid_Well">
+                    <label for="Paid_Well">They are paid extremely well</label><br>
+                    <input type="radio" id="High_Demand" name="true-shopify-devs" value="High_Demand">
+                    <label for="High_Demand">There is a high demand for them</label><br>
+                    <input type="radio" id="Need_Know" name="true-shopify-devs" value="Need_Know">
+                    <label for="Need_Know">They need to know web development, the platform itself, and the liquid template language</label><br>
+                    <input type="radio" id="All_Above_2" name="true-shopify-devs" value="All_Above_2">
+                    <label for="All_Above_2">All the above</label><br>
+                </form>
             </section>
         </article>
 
