@@ -1,14 +1,11 @@
-@use "../abstracts/colors" as *;
+@use "../abstracts/index" as *;
 
 header {
     background-color: $light-theme-primary;
 }
 
 .header-content-wrap {
+    @include flexbox(row, space-between, center);
     height: 70px;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
     width: 100%;
 }
