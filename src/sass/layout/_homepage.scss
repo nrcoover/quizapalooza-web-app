@@ -14,6 +14,10 @@ main {
     width: 100%;
 }
 
+h1, h2, h3, h4, p, label {
+    font-family: $current-font;
+}
+
 h1 {
     @include fontline(3.4rem, 3.6rem);
     margin-bottom: .35em;
@@ -35,6 +39,10 @@ h4 {
     margin-bottom: 1rem;
 }
 
+p {
+    @include fontline(1.3rem, 1.6rem);
+}
+
 input, label {
     @include fontline(1.2rem, 1.4rem);
     font-family: $current-font;
@@ -46,16 +54,39 @@ label {
     margin-left: .5rem
 }
 
+#Start-Menu {
+    background-color: $light-theme-background;
+    padding: 1rem;
+    border-radius: 15px;
+    box-shadow: 0 0 5px $light-theme-shadow;
+    
+    p {
+        text-align: justify;
+    }
+}
+
+#Menu-h3 {
+    text-align: center;
+}
+
+.menu-content-wrap {
+    background-color: $light-theme-background;
+    padding: 1.5rem;
+    border: 3px solid $light-theme-secondary-dark;
+    border-radius: 15px;
+}
+
 .quiz-title {
     @include fontline(2rem, 2.2rem);
     font-weight: 900;
     margin-bottom: .8em;
+    text-align: center;
 }
 
 .hidden {
     display: none;
 }
 
-.active-question {
+.active-panel {
     display: block;
 }

@@ -26,9 +26,16 @@
 
     <main>
         <article>
-            <h2 class="quiz-title">eCommerce Quiz</h2>
+            <h2 class="quiz-title hidden">eCommerce Quiz</h2>
             
-            <section id="Question_One" class = "question hidden active-question">
+            <section id="Start-Menu" class = "question hidden active-panel">
+                <div class="menu-content-wrap">
+                    <h3 id="Menu-h3">eCommerce Quiz</h3>
+                    <p>You are about to take a three question quiz on eCommerce. Once you begin, you will have two minutes to complete the quiz. Excellence is mandatory; a wrong answer will result in an immediate forfeit of your attempt, but you may retake the quiz as many times as you like. Press "Start" to begin.</p>
+                </div>
+            </section>
+
+            <section id="Question_One" class = "question hidden">
                 <h3>Question 1 of 3</h3>
                 <form action="">
                     <h4>Which of the following is not a real eCommerce platform?</h4>
@@ -77,7 +84,10 @@
     </main>
 
     <footer>
-        <div class="footer-content-wrap">
+        <div id="Start-Button-Wrap" class="footer-content-wrap hidden active-panel">
+            <input id="Start-Button" type="submit" value="Start" name="Start">
+        </div>
+        <div class="footer-content-wrap hidden">
             <input id="Next-Button" type="submit" value="Next ❯" name="Next">
             <div class="container-timer">
                 <p id="Timer-Title">time left:</p>
