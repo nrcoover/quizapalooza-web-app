@@ -54,7 +54,7 @@ label {
     margin-left: .5rem
 }
 
-#Start-Menu {
+#Start-Menu, #Failed-Menu {
     background-color: $light-theme-background;
     padding: 1rem;
     border-radius: 15px;
@@ -62,6 +62,16 @@ label {
     
     p {
         text-align: justify;
+    }
+}
+
+#Failed-Menu {
+    background-color: $light-theme-error-color-shadow;
+
+    .menu-content-wrap {
+        border: 3px solid $light-theme-error-color;
+        background-color: $light-theme-error-color-shadow;
+        color: $light-theme-background;
     }
 }
 
