@@ -89,9 +89,14 @@
 }
 
 // Flex Box Mixin
-@mixin flexbox($direction, $content, $items) {
+@mixin flexbox($direction: column, $content, $items) {
    display: flex;
    flex-direction: $direction;
    justify-content: $content;
    align-items: $items;
+}
+
+@mixin fontline ($size, $height) {
+   font-size: $size;
+   line-height: $height;
 }

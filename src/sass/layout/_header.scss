@@ -2,10 +2,13 @@
 
 header {
     background-color: $light-theme-primary;
+    color: $light-theme-background;
+    box-shadow: 2px 2px 5px $light-theme-shadow;
 }
 
 .header-content-wrap {
-    @include flexbox(row, space-between, center);
-    height: 70px;
+    @include flexbox(column, space-between, center);
+    // height: auto;
+    padding: 2rem 0;
     width: 100%;
 }
