@@ -100,3 +100,8 @@
    font-size: $size;
    line-height: $height;
 }
+
+@mixin resetbox {
+   margin: 0 0;
+   padding: 0 0;
+}
