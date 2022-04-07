@@ -2,18 +2,20 @@
 @use "../abstracts/index" as *;
 
 body {
+    @include flexbox(column, space-between, center);
     font-size: 18px;
     height: 100vh;
     min-width: 330px;
 }
 
 main {
+    height: auto;
     padding: 2rem;
     width: 100%;
 }
 
 h1 {
-    @include fontline(3rem, 3.2rem);
+    @include fontline(3.4rem, 3.6rem);
     margin-bottom: .35em;
 }
 
@@ -24,19 +26,20 @@ h2 {
 }
 
 h3 {
-    @include fontline(1rem, 1.2rem);
+    @include fontline(1.2rem, 1.4rem);
     margin-bottom: 1rem; 
 }
 
 h4 {
-    @include fontline(1.3rem, 1.5rem);
+    @include fontline(1.4rem, 1.6rem);
     margin-bottom: 1rem;
 }
 
 input, label {
-    @include fontline(1rem, 1.2rem);
-    margin-left: 1rem;
-    margin-bottom: .7rem; 
+    @include fontline(1.2rem, 1.4rem);
+    font-family: $current-font;
+    margin-left: 1.2rem;
+    margin-bottom: 1.2rem; 
 }
 
 label {
@@ -47,4 +50,12 @@ label {
     @include fontline(2rem, 2.2rem);
     font-weight: 900;
     margin-bottom: .8em;
+}
+
+.hidden {
+    display: none;
+}
+
+.active-question {
+    display: block;
 }
