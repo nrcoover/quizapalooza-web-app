@@ -11,6 +11,11 @@ footer {
     @include flexbox(column, center, center);
 }
 
+#Quiz-Button-Wrap {
+    // Please see .footer-content-wrap for explanation. This ID wasn't supposed to be necessary, but there seems to be a bug in specificity with the .hidden class not working on the Event Listenener in JavaScript.
+    @include flexbox(row, space-between, center);
+}
+
 #Start-Button, #Next-Button, .container-timer {
     @include fontline(1.5rem, 1.5rem);
     @include resetbox;
@@ -38,6 +43,7 @@ footer {
 }
 
 .footer-content-wrap {
+    // The below code may or may not be necessary if I can fix the bug with the Quiz Button Wrap.
     @include flexbox(row, space-between, center);
     height: auto;
     margin: 0 auto;

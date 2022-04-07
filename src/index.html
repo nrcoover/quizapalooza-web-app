@@ -28,21 +28,21 @@
         <article>
             <h2 class="quiz-title hidden">eCommerce Quiz</h2>
             
-            <section id="Start-Menu" class = "question hidden">
+            <section id="Start-Menu" class = "menu hidden active-panel">
                 <div class="menu-content-wrap">
                     <h3 id="Menu-h3">eCommerce Quiz</h3>
                     <p>You are about to take a three question quiz on eCommerce. Once you begin, you will have two minutes to complete the quiz. Excellence is mandatory; a wrong answer will result in an immediate forfeit of your attempt, but you may retake the quiz as many times as you like. Press "Start" to begin.</p>
                 </div>
             </section>
 
-            <section id="Failed-Menu" class = "question hidden">
+            <section id="Failed-Menu-Answer" class = "fail-notice hidden">
                 <div class="menu-content-wrap">
                     <h3 id="Menu-h3">Test Failed: Wrong Answer</h3>
                     <p>I'm sorry, but sadly you have selected a wrong answer and failed the test. As a reminder, excellence is mandatory, and so you will have to restart to retake the test. Press the Menu Button to return to the Main Menu.</p>
                 </div>
             </section>
 
-            <section id="Failed-Menu" class = "question hidden active-panel">
+            <section id="Failed-Menu-Time" class = "fail-notice hidden">
                 <div class="menu-content-wrap">
                     <h3 id="Menu-h3">Test Failed: Timed Out</h3>
                     <p>I'm sorry, but sadly you have run out of time and failed the test. As a reminder, excellence is mandatory, and so you will have to restart to retake the test. Press the Menu Button to return to the Main Menu.</p>
@@ -57,7 +57,7 @@
                     <label for="Shopify">Shopify</label><br>
                     <input type="radio" id="WooCommerce" name="real-eCommerce-platform" value="WooCommerce">
                     <label for="WooCommerce">WooCommerce</label><br>
-                    <input type="radio" id="ShopCommerce" name="real-eCommerce-platform" value="ShopCommerce">
+                    <input class="correct-answer" type="radio" id="ShopCommerce" name="real-eCommerce-platform" value="ShopCommerce">
                     <label for="ShopCommerce">ShopCommerce</label><br>
                     <input type="radio" id="BigCommerce" name="real-eCommerce-platform" value="BigCommerce">
                     <label for="BigCommerce">BigCommerce</label><br>
@@ -74,7 +74,7 @@
                     <label for="To_Extend">To extend the limited design options and functionalities of themes with custom code</label><br>
                     <input type="radio" id="To_Provide" name="why-shopify-devs" value="To_Provide">
                     <label for="To_Provide">To provide support with a deep understanding of how the platform works and what its limitations are</label><br>
-                    <input type="radio" id="All_Above" name="why-shopify-devs" value="All_Above">
+                    <input class="correct-answer" type="radio" id="All_Above" name="why-shopify-devs" value="All_Above">
                     <label for="All_Above">All the above</label><br>
                 </form>
             </section>
@@ -89,7 +89,7 @@
                     <label for="High_Demand">There is a high demand for them</label><br>
                     <input type="radio" id="Need_Know" name="true-shopify-devs" value="Need_Know">
                     <label for="Need_Know">They need to know web development, the platform itself, and the liquid template language</label><br>
-                    <input type="radio" id="All_Above_2" name="true-shopify-devs" value="All_Above_2">
+                    <input class="correct-answer" type="radio" id="All_Above_2" name="true-shopify-devs" value="All_Above_2">
                     <label for="All_Above_2">All the above</label><br>
                 </form>
             </section>
@@ -101,7 +101,8 @@
         <div id="Start-Button-Wrap" class="footer-content-wrap hidden active-panel">
             <input id="Start-Button" type="submit" value="Start" name="Start">
         </div>
-        <div class="footer-content-wrap hidden">
+
+        <div id="Quiz-Button-Wrap" class="footer-content-wrap hidden">
             <input id="Next-Button" type="submit" value="Next ❯" name="Next">
             <div class="container-timer">
                 <p id="Timer-Title">time left:</p>
