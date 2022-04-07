@@ -1,7 +1,8 @@
 @use "fonts" as *;
+@use "../abstracts/index" as *;
 
 html, body {
-    background-color: var(--theme-color-white);
+    background-color: $light-theme-base;
     font-family: $current-font;
     font-size: 14px;
     height: 100%;
