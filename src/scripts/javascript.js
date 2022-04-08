@@ -9,6 +9,7 @@ const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice')
 // button global variables
 const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
+const closeButton = document.querySelector('#Close-Button');
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -140,6 +141,10 @@ nextButton.addEventListener('click', function() {
         console.log("WRONG ANSWER")
     }
     
+});
+
+closeButton.addEventListener('click', function() {
+    nothingSelectedNotice.classList.remove('active-panel');
 });
 
 
