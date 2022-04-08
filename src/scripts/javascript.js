@@ -2,6 +2,7 @@
 const failedMenu = document.querySelector('#Failed-Menu');
 const startMenu = document.querySelector('#Start-Menu');
 const startButton = document.querySelector('#Start-Button');
+const nextButton = document.querySelector('#Next-Button');
 const questions = document.getElementsByClassName('question');
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
@@ -16,6 +17,27 @@ startButton.addEventListener('click', function() {
     
     quizFooterElements.classList.add('active-panel');
     questions[0].classList.add('active-panel');
+});
+
+// function to remove .active-question class from all question elements
+function removeActiveQuestionClass() {
+    for (let question of questions) {
+        question.classList.remove('active-panel');
+    }
+}
+
+// Next Button Moves Through Questions when Correct Answer is Selected {
+let nextButtonClickedCount = null;
+nextButton.addEventListener('click', function() {
+    // creates variable to hold as number of times button is clicked
+    let correctAnswer = document.querySelector(".correct-answer");
+    // if button clicked and right answer is selected, move to next question
+    if (correctAnswer.checked) {
+        nextButtonClickedCount++;
+        removeActiveQuestionClass();
+        questions[(nextButtonClickedCount)].classList.add('active-panel');
+        // increment the index of questions for active by value of number clicked.
+    }
 });
 
 
