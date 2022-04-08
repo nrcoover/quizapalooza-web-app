@@ -1,12 +1,35 @@
-// ********** GLOBAL DECLERATIONS **********
+// ********** GLOBAL VARIABLES DECLERATIONS **********
+
+// menu global variables
 const failedMenu = document.querySelector('#Failed-Menu');
 const startMenu = document.querySelector('#Start-Menu');
+
+// button global variables
 const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
+
+// question collections global variables
 const questions = document.getElementsByClassName('question');
+const questionOne = document.querySelector('#Question_One');
+const questionTwo = document.querySelector('#Question_Two');
+const questionThree = document.querySelector('#Question_Three');
+const questionOneForm = document.querySelector('#Question_One > form');
+const questionTwoForm = document.querySelector('#Question_Two > form');
+const questionThreeForm = document.querySelector('#Question_Two > form');
+
+// answer collections global variables
 const correctAnswers = document.getElementsByClassName('correct-answer');
+const wrongAnswers = document.getElementsByClassName('wrong-answer');
+const questionOneWrongAnswers = questionOneForm.querySelectorAll('.wrong-answer');
+const questionTwoWrongAnswers = questionTwoForm.querySelectorAll('.wrong-answer');
+const questionThreeWrongAnswers = questionThreeForm.querySelectorAll('.wrong-answer');
+
+// footer panels global variables
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
+
+
+// ********** FUNCTION DECLERATIONS **********
 
 // Start Button begins Test
 startButton.addEventListener('click', function() {
@@ -27,6 +50,49 @@ function removeActiveQuestionClass() {
     }
 }
 
+// function returns the id of the current active question
+function checkForActiveQuestion() {
+    for (let question of questions) {
+        if (question.classList.contains('active-panel')) {
+            console.log(question.id);
+            return question.id;
+        }
+    }
+}
+
+// function returns true if a wrong answer has been checked
+function currentWrongAnswersChecked(currentWrongAnswers) {
+    for (let wrongAnswer of currentWrongAnswers) {
+        console.log(wrongAnswer)
+        if (wrongAnswer.checked) {
+            console.log(`question one wrong answeres checked`)
+            return true;
+        }
+    }
+}
+
+// function to check if any wrong answer has been selected
+function wrongAnswerChecked() {
+    let currentQuestion = checkForActiveQuestion();
+    // Selects only the group of wrong answers from the current question
+    switch (currentQuestion) {
+        case "Question_One":
+            currentWrongAnswersChecked(questionOneWrongAnswers);
+            break;
+        case "Question_Two":
+            currentWrongAnswersChecked(questionTwoWrongAnswers);
+            break;
+        case "Question_Three":
+            currentWrongAnswersChecked(questionThreeWrongAnswers);
+            break;
+        default:
+            break;
+    }
+}
+
+
+// ********** EVENT HANDLER DECLERATIONS **********
+
 // Next Button Moves Through Questions when Correct Answer is Selected {
 let nextButtonClickedCount = null;
 let correctAnswerCounter = 0;
@@ -37,10 +103,11 @@ nextButton.addEventListener('click', function() {
         correctAnswerCounter++;
         removeActiveQuestionClass();
         questions[(nextButtonClickedCount)].classList.add('active-panel');
-    } else if (wrongAnswer[0].checked) {
+        return correctAnswers[correctAnswerCounter-1].checked = false;
+    } else if (wrongAnswerChecked()) {
+        // wrongAnswerChecked();
         console.log("WRONG ANSWER")
     }
-    return correctAnswers[correctAnswerCounter-1].checked = false;
     // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
 });
 
