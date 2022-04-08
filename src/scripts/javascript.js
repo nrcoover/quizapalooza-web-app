@@ -2,6 +2,7 @@
 
 // menu global variables
 const startMenu = document.querySelector('#Start-Menu');
+const failedMenus = document.querySelectorAll('.fail-notice');
 const failedMenuAnswer = document.querySelector('#Failed-Menu-Answer');
 const failedMenuTime = document.querySelector('#Failed-Menu-Time');
 const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice');
@@ -42,10 +43,17 @@ footerElementsInvisible(menuFooterElements);
 
 // ********** FUNCTION DECLERATIONS **********
 
-// function to remove .active-question class from all question elements
+// function to remove .active-panel class from all question elements
 function removeActiveQuestionClass() {
     for (let question of questions) {
         question.classList.remove('active-panel');
+    }
+}
+
+// function to remove .active-panel class from all failure menus
+function removeActiveFailureMenuClass() {
+    for (let menu of failedMenus) {
+        menu.classList.remove('active-panel');
     }
 }
 
