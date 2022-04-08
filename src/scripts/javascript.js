@@ -32,21 +32,10 @@ const startFooterElements = document.querySelector('#Start-Button-Wrap');
 
 
 // ********** START VOID **********
-// quizFooterElements.style.display = 'hidden';
+quizFooterElements.style.display = 'none';
+// the above code line is necessary due to an unresolved bug that causes this element to be visible upon page load, but it shouldn't be visible until after the user presses the start button.
 
 // ********** FUNCTION DECLERATIONS **********
-
-// Start Button begins Test
-startButton.addEventListener('click', function() {
-    startFooterElements.classList.remove('active-panel');
-    // Code below is necessary because of a specificity issue with display flex on the ID Start-Button Wrap. SUGGESTION: Consider wrapping the inputs in a div and made the divs the element with the class .hidden.
-    startFooterElements.style.display = 'none';
-    startMenu.classList.remove('active-panel');
-    
-    
-    quizFooterElements.classList.add('active-panel');
-    questions[0].classList.add('active-panel');
-});
 
 // function to remove .active-question class from all question elements
 function removeActiveQuestionClass() {
@@ -121,6 +110,18 @@ function wrongAnswerChecked() {
 
 
 // ********** EVENT HANDLER DECLERATIONS **********
+
+// Start Button begins Test
+startButton.addEventListener('click', function() {
+    startFooterElements.classList.remove('active-panel');
+    // Code below is necessary because of a specificity issue with display flex on the ID Start-Button Wrap. SUGGESTION: Consider wrapping the inputs in a div and made the divs the element with the class .hidden.
+    startFooterElements.style.display = 'none';
+    startMenu.classList.remove('active-panel');
+    quizFooterElements.classList.add('active-panel');
+    questions[0].classList.add('active-panel');
+    quizFooterElements.style.display = 'flex';
+});
+
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
 let nextButtonClickedCount = null;
