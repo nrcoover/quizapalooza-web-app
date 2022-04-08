@@ -4,6 +4,7 @@ const startMenu = document.querySelector('#Start-Menu');
 const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
 const questions = document.getElementsByClassName('question');
+const correctAnswers = document.getElementsByClassName('correct-answer');
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
 
@@ -28,16 +29,19 @@ function removeActiveQuestionClass() {
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
 let nextButtonClickedCount = null;
+let correctAnswerCounter = 0;
 nextButton.addEventListener('click', function() {
-    // creates variable to hold as number of times button is clicked
-    let correctAnswer = document.querySelector(".correct-answer");
-    // if button clicked and right answer is selected, move to next question
-    if (correctAnswer.checked) {
+    let wrongAnswer = document.querySelectorAll('.wrong-answer');
+    if (correctAnswers[correctAnswerCounter].checked) {
         nextButtonClickedCount++;
+        correctAnswerCounter++;
         removeActiveQuestionClass();
         questions[(nextButtonClickedCount)].classList.add('active-panel');
-        // increment the index of questions for active by value of number clicked.
+    } else if (wrongAnswer[0].checked) {
+        console.log("WRONG ANSWER")
     }
+    return correctAnswers[correctAnswerCounter-1].checked = false;
+    // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
 });
 
 
