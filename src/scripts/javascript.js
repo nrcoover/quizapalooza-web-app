@@ -66,15 +66,16 @@ function currentWrongAnswersChecked(currentWrongAnswers) {
 
 // function to active the appropriate failure menu or notice based on the state
 function activateFailureMenu(failureMenu) {
-    removeActiveQuestionClass();
     switch (failureMenu) {
         default:
             nothingSelectedNotice.classList.add('active-panel');
             break;
         case failedMenuAnswer:
+            removeActiveQuestionClass();
             failedMenuAnswer.classList.add('active-panel')
             break;
         case failedMenuTime:
+            removeActiveQuestionClass();
             failedMenuTime.classList.add('active-panel');
             break;
     }
