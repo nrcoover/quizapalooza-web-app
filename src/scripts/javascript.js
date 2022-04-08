@@ -179,7 +179,7 @@ startButton.addEventListener('click', function() {
 let nextButtonClickedCount = null;
 let correctAnswerCounter = 0;
 nextButton.addEventListener('click', function() {
-    let wrongAnswer = document.querySelectorAll('.wrong-answer');
+    // let wrongAnswer = document.querySelectorAll('.wrong-answer');
     if (correctAnswers[correctAnswerCounter].checked) {
         nextButtonClickedCount++;
         correctAnswerCounter++;
@@ -194,8 +194,11 @@ nextButton.addEventListener('click', function() {
     
 });
 
+// Close Button closes the "Nothing Was Selected" Notice
 closeButton.addEventListener('click', function() {
     nothingSelectedNotice.classList.remove('active-panel');
+});
+
 // Main Menu Button returns user the main menu starting screen
 mainMenuButton.addEventListener('click', function() {
     removeActiveFailureMenuClass();
