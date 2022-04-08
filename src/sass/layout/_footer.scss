@@ -7,7 +7,7 @@ footer {
     width: 100%;
 }
 
-#Start-Button-Wrap {
+#Start-Button-Wrap, #Main-Menu-Button-Wrap {
     @include flexbox(column, center, center);
 }
 
@@ -16,7 +16,7 @@ footer {
     @include flexbox(row, space-between, center);
 }
 
-#Start-Button, #Next-Button, .container-timer {
+#Start-Button, #Next-Button, #Main-Menu-Button, .container-timer {
     @include fontline(1.5rem, 1.5rem);
     @include resetbox;
     background-color: $light-theme-secondary-dark;
@@ -28,6 +28,10 @@ footer {
     text-align: center;
     text-decoration: none;
     width: 8rem;
+}
+
+#Main-Menu-Button {
+    width: 10rem;
 }
 
 #Timer-Title {
