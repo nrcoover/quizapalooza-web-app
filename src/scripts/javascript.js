@@ -147,18 +147,3 @@ nextButton.addEventListener('click', function() {
 closeButton.addEventListener('click', function() {
     nothingSelectedNotice.classList.remove('active-panel');
 });
-
-
-
-// function to remove .active-panel class from all question panels & add to next question when correct answer is selected.
-// function setNewActiveQuestion() {
-    // select all content that contains the .question class
-    // let currentQuestion = document.querySelector('.question .active-panel');
-    // add event listenere, and put this switch case on the function of the event listener for the next button.
-    // switch () {
-    //     questions.classList.remove('active-panel')
-    // }
-    // remove .active-panel class
-    // add to elements of next panel.
-// }
-
