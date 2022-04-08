@@ -10,6 +10,7 @@ const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice')
 const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
 const closeButton = document.querySelector('#Close-Button');
+const mainMenuButton = document.querySelector('#Main-Menu-Button');
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -184,4 +185,14 @@ nextButton.addEventListener('click', function() {
 
 closeButton.addEventListener('click', function() {
     nothingSelectedNotice.classList.remove('active-panel');
+// Main Menu Button returns user the main menu starting screen
+mainMenuButton.addEventListener('click', function() {
+    removeActiveFailureMenuClass();
+    footerElementsInvisible(menuFooterElements);
+    footerElementsInvisible(quizFooterElements);
+    footerElementsVisible(startFooterElements);
+    startMenu.classList.add('active-panel');
+    let nextButtonClickedCount = null;
+    let correctAnswerCounter = 0;
+    return nextButtonClickedCount, correctAnswerCounter;
 });
