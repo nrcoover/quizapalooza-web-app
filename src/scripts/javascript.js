@@ -21,6 +21,7 @@ const questionTwoForm = document.querySelector('#Question_Two > form');
 const questionThreeForm = document.querySelector('#Question_Two > form');
 
 // answer collections global variables
+const allAnswers = document.querySelectorAll('.answer');
 const correctAnswers = document.getElementsByClassName('correct-answer');
 const wrongAnswers = document.getElementsByClassName('wrong-answer');
 const questionOneWrongAnswers = questionOneForm.querySelectorAll('.wrong-answer');
