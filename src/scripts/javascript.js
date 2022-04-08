@@ -1,8 +1,10 @@
 // ********** GLOBAL VARIABLES DECLERATIONS **********
 
 // menu global variables
-const failedMenu = document.querySelector('#Failed-Menu');
 const startMenu = document.querySelector('#Start-Menu');
+const failedMenuAnswer = document.querySelector('#Failed-Menu-Answer');
+const failedMenuTime = document.querySelector('#Failed-Menu-Time');
+const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice');
 
 // button global variables
 const startButton = document.querySelector('#Start-Button');
@@ -28,6 +30,9 @@ const questionThreeWrongAnswers = questionThreeForm.querySelectorAll('.wrong-ans
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
 
+
+// ********** START VOID **********
+// quizFooterElements.style.display = 'hidden';
 
 // ********** FUNCTION DECLERATIONS **********
 
@@ -63,29 +68,53 @@ function checkForActiveQuestion() {
 // function returns true if a wrong answer has been checked
 function currentWrongAnswersChecked(currentWrongAnswers) {
     for (let wrongAnswer of currentWrongAnswers) {
-        console.log(wrongAnswer)
         if (wrongAnswer.checked) {
-            console.log(`question one wrong answeres checked`)
             return true;
         }
     }
 }
 
-// function to check if any wrong answer has been selected
+// function to active the appropriate failure menu or notice based on the state
+function activateFailureMenu(failureMenu) {
+    removeActiveQuestionClass();
+    switch (failureMenu) {
+        default:
+            nothingSelectedNotice.classList.add('active-panel');
+            break;
+        case failedMenuAnswer:
+            failedMenuAnswer.classList.add('active-panel')
+            break;
+        case failedMenuTime:
+            failedMenuTime.classList.add('active-panel');
+            break;
+    }
+}
+
+// function to select which group of answers to pass througth the currentWrongAnswers function
+function currentWrongAnswersCheckedSelector(questionNumberWrongAnswers) {
+    if (currentWrongAnswersChecked(questionNumberWrongAnswers)) {
+        activateFailureMenu(failedMenuAnswer);
+    } else {
+        activateFailureMenu();
+    }
+}
+
+// function to check if any wrong answer has been selected on the current question
 function wrongAnswerChecked() {
     let currentQuestion = checkForActiveQuestion();
     // Selects only the group of wrong answers from the current question
     switch (currentQuestion) {
         case "Question_One":
-            currentWrongAnswersChecked(questionOneWrongAnswers);
+            currentWrongAnswersCheckedSelector(questionOneWrongAnswers);
             break;
         case "Question_Two":
-            currentWrongAnswersChecked(questionTwoWrongAnswers);
+            currentWrongAnswersCheckedSelector(questionTwoWrongAnswers);
             break;
         case "Question_Three":
-            currentWrongAnswersChecked(questionThreeWrongAnswers);
+            currentWrongAnswersCheckedSelector(questionThreeWrongAnswers);
             break;
         default:
+            activateFailureMenu();
             break;
     }
 }
@@ -104,11 +133,12 @@ nextButton.addEventListener('click', function() {
         removeActiveQuestionClass();
         questions[(nextButtonClickedCount)].classList.add('active-panel');
         return correctAnswers[correctAnswerCounter-1].checked = false;
+        // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
     } else if (wrongAnswerChecked()) {
         // wrongAnswerChecked();
         console.log("WRONG ANSWER")
     }
-    // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
+    
 });
 
 
