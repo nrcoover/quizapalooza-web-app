@@ -111,6 +111,93 @@ function wrongAnswerChecked() {
     }
 }
 
+function footerElementsInvisible(footerElements) {
+    switch(footerElements) {
+        default:
+            console.log("No Footer Elements Group was selected. Please review code and select appropriate grouping.")
+        case startFooterElements:
+            startFooterElements.classList.remove('active-panel');
+            startFooterElements.style.display = 'none';
+        case quizFooterElements:
+            quizFooterElements.classList.remove('active-panel');
+            quizFooterElements.style.display = 'none';
+            break;
+        case menuFooterElements:
+            menuFooterElements.classList.remove('active-panel');
+            menuFooterElements.style.display = 'none';
+            break;
+    }
+}
+
+// function switches visibility of startFooterElements on and off
+function footerElementsVisible(visibilitySelector) {
+    switch(visibilitySelector) {
+        default:
+            console.log("No Footer Elements Group was selected. Please review code and select appropriate grouping.")
+        case startFooterElements:
+            startFooterElements.classList.add('active-panel');
+            startFooterElements.style.display = 'flex';
+        case quizFooterElements:
+            quizFooterElements.classList.add('active-panel');
+            quizFooterElements.style.display = 'flex';
+            break;
+        case menuFooterElements:
+            menuFooterElements.classList.add('active-panel');
+            menuFooterElements.style.display = 'flex';
+            break;
+    }
+}
+
+// // function switches visibility of quizFooterElements on and off
+// function quizFooterElementsDisplaySelector(visibilitySelector) {
+//     switch(visibilitySelector) {
+//         default:
+//             console.log("No case was selected for the quizFooterElementsDisplaySelector() function. Please reivew code and make selection where appropriate.");
+//             break;
+//         case makeInvisible:
+//             quizFooterElements.classList.remove('active-panel');
+//             quizFooterElements.style.display = 'none';
+//             break;
+//         case makeVisible:
+//             quizFooterElements.classList.add('active-panel');
+//             quizFooterElements.style.display = 'flex';
+//             break;
+//     }
+// }
+
+// // function switches visibility of startFooterElements on and off
+// function startFooterElementsDisplaySelector(visibilitySelector) {
+//     switch(visibilitySelector) {
+//         default:
+//             console.log("No case was selected for the startFooterElementsDisplaySelector() function. Please reivew code and make selection where appropriate.");
+//             break;
+//         case makeInvisible:
+//             startFooterElements.classList.remove('active-panel');
+//             startFooterElements.style.display = 'none';
+//             break;
+//         case makeVisible:
+//             startFooterElements.classList.add('active-panel');
+//             startFooterElements.style.display = 'flex';
+//             break;
+//     }
+// }
+
+// function menuFooterElementsDisplaySelector(visibilitySelector) {
+//     switch(visibilitySelector) {
+//         default:
+//             console.log("No case was selected for the menuFooterElementsDisplaySelector() function. Please reivew code and make selection where appropriate.");
+//             break;
+//         case makeInvisible:
+//             menuFooterElements.classList.remove('active-panel');
+//             menuFooterElements.style.display = 'none';
+//             break;
+//         case makeVisible:
+//             menuFooterElements.classList.add('active-panel');
+//             menuFooterElements.style.display = 'flex';
+//             break;
+//     }
+// }
+
 
 // ********** EVENT HANDLER DECLERATIONS **********
 
