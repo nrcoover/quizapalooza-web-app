@@ -201,9 +201,11 @@ nextButton.addEventListener('click', function() {
         questions[(nextButtonClickedCount)].classList.add('active-panel');
         return correctAnswers[correctAnswerCounter-1].checked = false;
         // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
-    } else if (wrongAnswerChecked()) {
-        // wrongAnswerChecked();
-        console.log("WRONG ANSWER")
+    // } else if (wrongAnswerChecked()) {
+    } else {
+        console.log("WRONG ANSWER");
+        wrongAnswerChecked();
+        console.log("NOTHING WAS SELECTED SO THE ELSE STATEMENT REJECTED");
     }
     
 });
