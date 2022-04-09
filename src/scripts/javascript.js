@@ -186,10 +186,17 @@ startButton.addEventListener('click', function() {
 let nextButtonClickedCount = 0;
 let correctAnswerCounter = 0;
 nextButton.addEventListener('click', function() {
+    console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
+    console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
+    console.log(correctAnswers);
     // let wrongAnswer = document.querySelectorAll('.wrong-answer');
     if (correctAnswers[correctAnswerCounter].checked) {
+        console.log(correctAnswers[correctAnswerCounter]);
         nextButtonClickedCount++;
         correctAnswerCounter++;
+        console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
+        console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
+        console.log("END OF FUNCTION")
         removeActiveQuestionClass();
         questions[(nextButtonClickedCount)].classList.add('active-panel');
         return correctAnswers[correctAnswerCounter-1].checked = false;
@@ -217,4 +224,22 @@ mainMenuButton.addEventListener('click', function() {
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
     return nextButtonClickedCount, correctAnswerCounter;
+});
+
+
+// FOR DEBUGGING
+const addAllButton = document.querySelector('#Add-All-Button');
+const allHidden = document.querySelectorAll('.hidden');
+
+function returnAll() {
+    for (let hidden of allHidden) {
+        hidden.classList.add('active-panel');
+        // hidden.classList.remove('hidden');
+    }
+    removeActiveFailureMenuClass();
+    nothingSelectedNotice.classList.remove('active-panel');
+};
+
+addAllButton.addEventListener('click', function() {
+    returnAll();
 });
