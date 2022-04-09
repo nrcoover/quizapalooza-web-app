@@ -76,7 +76,7 @@ function currentWrongAnswersChecked(currentWrongAnswers) {
     }
 }
 
-// function to active the appropriate failure menu or notice based on the state
+// function to activate the appropriate failure menu or notice based on the state
 function activateFailureMenu(failureMenu) {
     switch (failureMenu) {
         default:
@@ -123,6 +123,13 @@ function wrongAnswerChecked() {
         default:
             activateFailureMenu();
             break;
+    }
+}
+
+// function reverts checked value to false for all possible answers (even ones hidden by "display: none")
+function deselectAllInputs() {
+    for (let answer of allAnswers) {
+        answer.checked = false;
     }
 }
 
@@ -176,7 +183,7 @@ startButton.addEventListener('click', function() {
 
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
-let nextButtonClickedCount = null;
+let nextButtonClickedCount = 0;
 let correctAnswerCounter = 0;
 nextButton.addEventListener('click', function() {
     // let wrongAnswer = document.querySelectorAll('.wrong-answer');
@@ -202,11 +209,12 @@ closeButton.addEventListener('click', function() {
 // Main Menu Button returns user the main menu starting screen
 mainMenuButton.addEventListener('click', function() {
     removeActiveFailureMenuClass();
+    deselectAllInputs();
     footerElementsInvisible(menuFooterElements);
     footerElementsInvisible(quizFooterElements);
     footerElementsVisible(startFooterElements);
     startMenu.classList.add('active-panel');
-    let nextButtonClickedCount = null;
-    let correctAnswerCounter = 0;
+    nextButtonClickedCount = 0;
+    correctAnswerCounter = 0;
     return nextButtonClickedCount, correctAnswerCounter;
 });
