@@ -20,7 +20,7 @@ const questionTwo = document.querySelector('#Question_Two');
 const questionThree = document.querySelector('#Question_Three');
 const questionOneForm = document.querySelector('#Question_One > form');
 const questionTwoForm = document.querySelector('#Question_Two > form');
-const questionThreeForm = document.querySelector('#Question_Two > form');
+const questionThreeForm = document.querySelector('#Question_Three > form');
 
 // answer collections global variables
 const allAnswers = document.querySelectorAll('.answer');
