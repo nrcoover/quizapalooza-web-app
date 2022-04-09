@@ -61,7 +61,7 @@ function removeActiveFailureMenuClass() {
 function checkForActiveQuestion() {
     for (let question of questions) {
         if (question.classList.contains('active-panel')) {
-            console.log(question.id);
+            // console.log(question.id);
             return question.id;
         }
     }
@@ -186,26 +186,26 @@ startButton.addEventListener('click', function() {
 let nextButtonClickedCount = 0;
 let correctAnswerCounter = 0;
 nextButton.addEventListener('click', function() {
-    console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
-    console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
-    console.log(correctAnswers);
+    // console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
+    // console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
+    // console.log(correctAnswers);
     // let wrongAnswer = document.querySelectorAll('.wrong-answer');
     if (correctAnswers[correctAnswerCounter].checked) {
-        console.log(correctAnswers[correctAnswerCounter]);
+        // console.log(correctAnswers[correctAnswerCounter]);
         nextButtonClickedCount++;
         correctAnswerCounter++;
-        console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
-        console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
-        console.log("END OF FUNCTION")
+        // console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
+        // console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
+        // console.log("END OF FUNCTION")
         removeActiveQuestionClass();
         questions[(nextButtonClickedCount)].classList.add('active-panel');
         return correctAnswers[correctAnswerCounter-1].checked = false;
         // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
     // } else if (wrongAnswerChecked()) {
     } else {
-        console.log("WRONG ANSWER");
+        // console.log("WRONG ANSWER");
         wrongAnswerChecked();
-        console.log("NOTHING WAS SELECTED SO THE ELSE STATEMENT REJECTED");
+        // console.log("NOTHING WAS SELECTED SO THE ELSE STATEMENT REJECTED");
     }
     
 });
@@ -230,18 +230,18 @@ mainMenuButton.addEventListener('click', function() {
 
 
 // FOR DEBUGGING
-const addAllButton = document.querySelector('#Add-All-Button');
-const allHidden = document.querySelectorAll('.hidden');
+// const addAllButton = document.querySelector('#Add-All-Button');
+// const allHidden = document.querySelectorAll('.hidden');
 
-function returnAll() {
-    for (let hidden of allHidden) {
-        hidden.classList.add('active-panel');
-        // hidden.classList.remove('hidden');
-    }
-    removeActiveFailureMenuClass();
-    nothingSelectedNotice.classList.remove('active-panel');
-};
+// function returnAll() {
+//     for (let hidden of allHidden) {
+//         hidden.classList.add('active-panel');
+//         // hidden.classList.remove('hidden');
+//     }
+//     removeActiveFailureMenuClass();
+//     nothingSelectedNotice.classList.remove('active-panel');
+// };
 
-addAllButton.addEventListener('click', function() {
-    returnAll();
-});
+// addAllButton.addEventListener('click', function() {
+//     returnAll();
+// });
