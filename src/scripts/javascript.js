@@ -38,10 +38,6 @@ const closeButton = document.querySelector('#Close-Button');
 const mainMenuButton = document.querySelector('#Main-Menu-Button');
 const currentButtonColor = lightSecondaryDark;
 let startButtonClickedCount = 0;
-let countDownTime;
-let currentTime;
-let t;
-let secs;
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -64,6 +60,10 @@ const questionThreeWrongAnswers = questionThreeForm.querySelectorAll('.wrong-ans
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
 const menuFooterElements = document.querySelector('#Main-Menu-Button-Wrap');
+
+// timer global variables
+const minutesCounter = document.getElementById("timer-mins");
+const secondsCounter = document.getElementById("timer-secs");
 
 
 // ********** START VOID **********
@@ -237,25 +237,26 @@ startButton.addEventListener('click', function() {
     questions[0].classList.add('active-panel');
     if (startButtonClickedCount < 2) {
         // Creates a two minute timer countdown
-        let countDownTime = (new Date(Date.now()).getTime() + (2 * 61000));
-        // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, 61 seconds are added per minute, to allow for this latency (code seen in above line).
+        let countDownTime = (new Date(Date.now()).getTime() + ((2 * 60000) + 1000));
+        // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, and extra second is added to allow for this latency (code seen in above line); the timer is hard-coded to start at 2 minutes in the HTML. Adjust the time will have to include adjusting the starting value in HTML.
         const timer = setInterval(function() {
             let currentTime = new Date(Date.now()).getTime();
             let t = countDownTime - currentTime;
-            if (t >= 0) {
+            while (t > 0) {
                 let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
                 let secs = Math.floor((t % (1000 * 60)) / 1000);
-                document.getElementById("timer-mins").innerHTML = ("0"+mins).slice(-2);
-                document.getElementById("timer-secs").innerHTML = ("0"+secs).slice(-2);
+                minutesCounter.innerHTML = ("0"+mins).slice(-2);
+                secondsCounter.innerHTML = ("0"+secs).slice(-2);
                 console.log(t);
                 return t;
-            } else {
-                console.log("TIME HAS RUN OUT!");
-                activateFailureMenu(failedMenuTime);
             }
+            activateFailureMenu(failedMenuTime);
+            clearInterval(timer);
+            document.getElementById
+            minutesCounter.innerHTML = "02";
+            secondsCounter.innerHTML = "00";
         }, 1000);
     }
-    // return countDownTime, currentTime;
 });
 
 
@@ -274,17 +275,13 @@ nextButton.addEventListener('click', function() {
                 winnerPanel.classList.add('active-panel');
                 footerElementsInvisible(quizFooterElements);
                 footerElementsVisible(menuFooterElements);
-
-                // INSERT CODE HERE TO STOP AND RESET TIMER!!!
-
             }
             return correctAnswers[correctAnswerCounter-1].checked = false;
             // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
         }
     } else {
         wrongAnswerChecked();
-    }
-    
+    }   
 });
 
 // Close Button closes the "Nothing Was Selected" Notice
@@ -309,7 +306,7 @@ mainMenuButton.addEventListener('click', function() {
 });
 
 
-// FOR DEBUGGING
+// // FOR DEBUGGING
 // const addAllButton = document.querySelector('#Add-All-Button');
 // const allHidden = document.querySelectorAll('.hidden');
 
