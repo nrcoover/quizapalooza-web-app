@@ -37,6 +37,11 @@ const nextButton = document.querySelector('#Next-Button');
 const closeButton = document.querySelector('#Close-Button');
 const mainMenuButton = document.querySelector('#Main-Menu-Button');
 const currentButtonColor = lightSecondaryDark;
+let startButtonClickedCount = 0;
+let countDownTime;
+let currentTime;
+let t;
+let secs;
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -139,6 +144,7 @@ function activateFailureMenu(failureMenu) {
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
             setFailureBackgroundColor();
+            startButtonClickedCount = 0;
             break;
     }
 }
@@ -224,10 +230,32 @@ function footerElementsVisible(visibilitySelector) {
 
 // Start Button begins Test
 startButton.addEventListener('click', function() {
+    startButtonClickedCount++;
     footerElementsInvisible(startFooterElements);
     footerElementsVisible(quizFooterElements);
     startMenu.classList.remove('active-panel');
     questions[0].classList.add('active-panel');
+    if (startButtonClickedCount < 2) {
+        // Creates a two minute timer countdown
+        let countDownTime = (new Date(Date.now()).getTime() + (2 * 61000));
+        // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, 61 seconds are added per minute, to allow for this latency (code seen in above line).
+        const timer = setInterval(function() {
+            let currentTime = new Date(Date.now()).getTime();
+            let t = countDownTime - currentTime;
+            if (t >= 0) {
+                let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
+                let secs = Math.floor((t % (1000 * 60)) / 1000);
+                document.getElementById("timer-mins").innerHTML = ("0"+mins).slice(-2);
+                document.getElementById("timer-secs").innerHTML = ("0"+secs).slice(-2);
+                console.log(t);
+                return t;
+            } else {
+                console.log("TIME HAS RUN OUT!");
+                activateFailureMenu(failedMenuTime);
+            }
+        }, 1000);
+    }
+    // return countDownTime, currentTime;
 });
 
 
