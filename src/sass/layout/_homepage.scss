@@ -107,6 +107,11 @@ label {
     text-align: center;
 }
 
+.radio-button-wrapper {
+    display: flex;
+    flex-direction: row;
+}
+
 .menu-content-wrap {
     background-color: $light-theme-background;
     padding: 1.5rem;
