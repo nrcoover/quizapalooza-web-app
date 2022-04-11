@@ -38,12 +38,17 @@ const menuFooterElements = document.querySelector('#Main-Menu-Button-Wrap');
 
 
 // ********** START VOID **********
-footerElementsInvisible(quizFooterElements);
-footerElementsInvisible(menuFooterElements);
+startVoid();
 // the above code line is necessary due to an unresolved bug that causes this element to be visible upon page load, but it shouldn't be visible until after the user presses the start button.
 
 
 // ********** FUNCTION DECLERATIONS **********
+
+// function to start/reset the quiz starter screen
+function startVoid() {
+    footerElementsInvisible(quizFooterElements);
+    footerElementsInvisible(menuFooterElements);
+}
 
 // function to remove .active-panel class from all question elements
 function removeActiveQuestionClass() {
@@ -221,12 +226,11 @@ closeButton.addEventListener('click', function() {
 mainMenuButton.addEventListener('click', function() {
     removeActiveFailureMenuClass();
     deselectAllInputs();
-    footerElementsInvisible(menuFooterElements);
-    footerElementsInvisible(quizFooterElements);
-    footerElementsVisible(startFooterElements);
+    startVoid();
     if (winnerPanel.classList.contains('active-panel')) {
         winnerPanel.classList.remove('active-panel');
     }
+    footerElementsVisible(startFooterElements);
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
