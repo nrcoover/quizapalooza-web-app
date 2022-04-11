@@ -6,6 +6,7 @@ const failedMenus = document.querySelectorAll('.fail-notice');
 const failedMenuAnswer = document.querySelector('#Failed-Menu-Answer');
 const failedMenuTime = document.querySelector('#Failed-Menu-Time');
 const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice');
+const winnerPanel = document.querySelector('#You-Won');
 
 // button global variables
 const startButton = document.querySelector('#Start-Button');
@@ -194,12 +195,23 @@ nextButton.addEventListener('click', function() {
         // console.log(correctAnswers[correctAnswerCounter]);
         nextButtonClickedCount++;
         correctAnswerCounter++;
-        // console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
+        while (correctAnswerCounter <= questions.length) {
+            removeActiveQuestionClass();
+            if(questions[nextButtonClickedCount]) {
+                questions[(nextButtonClickedCount)].classList.add('active-panel');
+            } else {
+                winnerPanel.classList.add('active-panel');
+                footerElementsInvisible(quizFooterElements);
+                footerElementsVisible(menuFooterElements);
+
+                // INSERT CODE HERE TO STOP AND RESET TIMER!!!
+
+            }
+            return correctAnswers[correctAnswerCounter-1].checked = false;
+        }
+        console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
         // console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
         // console.log("END OF FUNCTION")
-        removeActiveQuestionClass();
-        questions[(nextButtonClickedCount)].classList.add('active-panel');
-        return correctAnswers[correctAnswerCounter-1].checked = false;
         // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
     // } else if (wrongAnswerChecked()) {
     } else {
@@ -222,6 +234,9 @@ mainMenuButton.addEventListener('click', function() {
     footerElementsInvisible(menuFooterElements);
     footerElementsInvisible(quizFooterElements);
     footerElementsVisible(startFooterElements);
+    if (winnerPanel.classList.contains('active-panel')) {
+        winnerPanel.classList.remove('active-panel');
+    }
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;

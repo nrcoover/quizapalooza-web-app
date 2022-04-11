@@ -128,3 +128,14 @@ label {
 .active-panel {
     display: block;
 }
+
+.winner-panel {
+    text-align: center;
+}
+
+.winner-panel img {
+    border-radius: 15px;
+    box-shadow: 2px 2px 8px $light-theme-shadow;
+    margin: 1rem auto;
+    width: 100%;
+}
