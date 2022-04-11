@@ -147,6 +147,7 @@ function footerElementsInvisible(footerElements) {
         case startFooterElements:
             startFooterElements.classList.remove('active-panel');
             startFooterElements.style.display = 'none';
+            break;
         case quizFooterElements:
             quizFooterElements.classList.remove('active-panel');
             quizFooterElements.style.display = 'none';
@@ -166,6 +167,7 @@ function footerElementsVisible(visibilitySelector) {
         case startFooterElements:
             startFooterElements.classList.add('active-panel');
             startFooterElements.style.display = 'flex';
+            break;
         case quizFooterElements:
             quizFooterElements.classList.add('active-panel');
             quizFooterElements.style.display = 'flex';
