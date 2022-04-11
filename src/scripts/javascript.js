@@ -1,5 +1,28 @@
 // ********** GLOBAL VARIABLES DECLERATIONS **********
 
+// light theme color variables
+const lightBase = '#bdbdbd';
+const lightBackground = '#FFFFFF';
+const lightShadow = 'rgba(18, 18, 18, .3)';
+const lightPrimary = '#6200EE';
+const lightPrimaryDark = '#3700B3';
+const lightSecondary = '#03DAC6';
+const lightSecondaryDark = '#018786';
+const lightErrorColor = '#B00020';
+
+// dark theme color variables
+const darkBase = '#1d1d1d';
+const darkBackground = '#121212';
+const darkShadow = 'rgba(255, 255, 255, .1)'
+const darkPrimary = '#BB86FC';
+const darkPrimaryDark = '#3700B3';
+const darkSecondary = '#03DAC6';
+const darkErrorColor = '#CF6679';
+
+// html elemnts variables
+const headerHTML = document.querySelector('header');
+const footerHTML = document.querySelector('footer');
+
 // menu global variables
 const startMenu = document.querySelector('#Start-Menu');
 const failedMenus = document.querySelectorAll('.fail-notice');
@@ -13,6 +36,7 @@ const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
 const closeButton = document.querySelector('#Close-Button');
 const mainMenuButton = document.querySelector('#Main-Menu-Button');
+const currentButtonColor = lightSecondaryDark;
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -82,6 +106,20 @@ function currentWrongAnswersChecked(currentWrongAnswers) {
     }
 }
 
+// function to change footer & header background colors for failure message
+function setFailureBackgroundColor() {
+    headerHTML.classList.add('failure-background-color');
+    footerHTML.classList.add('failure-background-color');
+    mainMenuButton.style.backgroundColor = darkErrorColor;
+}
+
+// function to remove footer & header background colors of failure message
+function removeFailureBackgroundColor() {
+    headerHTML.classList.remove('failure-background-color');
+    footerHTML.classList.remove('failure-background-color');
+    mainMenuButton.style.backgroundColor = currentButtonColor;
+}
+
 // function to activate the appropriate failure menu or notice based on the state
 function activateFailureMenu(failureMenu) {
     switch (failureMenu) {
@@ -93,12 +131,14 @@ function activateFailureMenu(failureMenu) {
             failedMenuAnswer.classList.add('active-panel')
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
+            setFailureBackgroundColor();
             break;
         case failedMenuTime:
             removeActiveQuestionClass();
             failedMenuTime.classList.add('active-panel');
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
+            setFailureBackgroundColor();
             break;
     }
 }
@@ -227,6 +267,7 @@ closeButton.addEventListener('click', function() {
 // Main Menu Button returns user the main menu starting screen
 mainMenuButton.addEventListener('click', function() {
     removeActiveFailureMenuClass();
+    removeFailureBackgroundColor();
     deselectAllInputs();
     startVoid();
     if (winnerPanel.classList.contains('active-panel')) {
