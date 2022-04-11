@@ -42,6 +42,7 @@ footerElementsInvisible(quizFooterElements);
 footerElementsInvisible(menuFooterElements);
 // the above code line is necessary due to an unresolved bug that causes this element to be visible upon page load, but it shouldn't be visible until after the user presses the start button.
 
+
 // ********** FUNCTION DECLERATIONS **********
 
 // function to remove .active-panel class from all question elements
@@ -62,7 +63,6 @@ function removeActiveFailureMenuClass() {
 function checkForActiveQuestion() {
     for (let question of questions) {
         if (question.classList.contains('active-panel')) {
-            // console.log(question.id);
             return question.id;
         }
     }
@@ -134,6 +134,7 @@ function deselectAllInputs() {
     }
 }
 
+// function to remove selected footerElements Group from visibility
 function footerElementsInvisible(footerElements) {
     switch(footerElements) {
         default:
@@ -152,7 +153,7 @@ function footerElementsInvisible(footerElements) {
     }
 }
 
-// function switches visibility of startFooterElements on and off
+// function to return selected footerElements Group to visibility
 function footerElementsVisible(visibilitySelector) {
     switch(visibilitySelector) {
         default:
@@ -187,12 +188,7 @@ startButton.addEventListener('click', function() {
 let nextButtonClickedCount = 0;
 let correctAnswerCounter = 0;
 nextButton.addEventListener('click', function() {
-    // console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
-    // console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
-    // console.log(correctAnswers);
-    // let wrongAnswer = document.querySelectorAll('.wrong-answer');
     if (correctAnswers[correctAnswerCounter].checked) {
-        // console.log(correctAnswers[correctAnswerCounter]);
         nextButtonClickedCount++;
         correctAnswerCounter++;
         while (correctAnswerCounter <= questions.length) {
@@ -208,16 +204,10 @@ nextButton.addEventListener('click', function() {
 
             }
             return correctAnswers[correctAnswerCounter-1].checked = false;
+            // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
         }
-        console.log(`The correctAnswerCount is: ${correctAnswerCounter}`);
-        // console.log(`The nextButtonClickedCount is: ${nextButtonClickedCount}`);
-        // console.log("END OF FUNCTION")
-        // This clears the checkmark on the correct answer of the previous question; this is necessary because although the question is hidden from view, it is still existing in the DOM, and so needs to be cleared in order to allow the Next Button to rely on the next question's correct answer to function.
-    // } else if (wrongAnswerChecked()) {
     } else {
-        // console.log("WRONG ANSWER");
         wrongAnswerChecked();
-        // console.log("NOTHING WAS SELECTED SO THE ELSE STATEMENT REJECTED");
     }
     
 });
