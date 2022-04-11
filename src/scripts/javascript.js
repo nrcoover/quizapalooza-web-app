@@ -65,6 +65,9 @@ const menuFooterElements = document.querySelector('#Main-Menu-Button-Wrap');
 const minutesCounter = document.getElementById("timer-mins");
 const secondsCounter = document.getElementById("timer-secs");
 
+// boolean variables
+    testCompleted = false;
+
 
 // ********** START VOID **********
 startVoid();
@@ -242,23 +245,28 @@ startButton.addEventListener('click', function() {
         const timer = setInterval(function() {
             let currentTime = new Date(Date.now()).getTime();
             let t = countDownTime - currentTime;
-            while (t > 0) {
+            while (t > 0 && !testCompleted) {
                 let mins = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
                 let secs = Math.floor((t % (1000 * 60)) / 1000);
                 minutesCounter.innerHTML = ("0"+mins).slice(-2);
                 secondsCounter.innerHTML = ("0"+secs).slice(-2);
-                console.log(t);
+                if (winnerPanel.classList.contains('active-panel')) {
+                    testCompleted = true;
+                    continue;
+                }
                 return t;
             }
-            activateFailureMenu(failedMenuTime);
+            if (!testCompleted) {
+                activateFailureMenu(failedMenuTime);
+            }
             clearInterval(timer);
             document.getElementById
             minutesCounter.innerHTML = "02";
             secondsCounter.innerHTML = "00";
         }, 1000);
     }
+    console.log("Start button hit: Test Complete value: " + testCompleted);
 });
-
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
 let nextButtonClickedCount = 0;
@@ -295,14 +303,17 @@ mainMenuButton.addEventListener('click', function() {
     removeFailureBackgroundColor();
     deselectAllInputs();
     startVoid();
+    // resets quiz variables if user wishes to retake the quiz post victory
     if (winnerPanel.classList.contains('active-panel')) {
         winnerPanel.classList.remove('active-panel');
+        testCompleted = false;
+        startButtonClickedCount = 0;
     }
     footerElementsVisible(startFooterElements);
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
-    return nextButtonClickedCount, correctAnswerCounter;
+    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted;
 });
 
 
