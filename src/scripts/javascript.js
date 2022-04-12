@@ -278,6 +278,14 @@ function puppyImageSelector() {
     }
 }
 
+// function to act as a catch-all removal of active panel elements from previous states
+function setDefaultState() {
+    removeActiveFailureMenuClass();
+    removeFailureBackgroundColor();
+    deselectAllInputs();
+    startVoid();
+}
+
 
 // ********** EVENT HANDLER DECLERATIONS **********
 
@@ -333,11 +341,7 @@ retryButton.addEventListener('click', function() {
         return testCompleted = false,
         quizIterationCount = 0;
     }
-    // resets quiz state, removing active panels
-    removeActiveFailureMenuClass();
-    removeFailureBackgroundColor();
-    deselectAllInputs();
-    startVoid();
+    setDefaultState();
     // resets quiz variables if user wishes to retake the quiz post victory
     if (winnerPanel.classList.contains('active-panel')) {
         winnerPanel.classList.remove('active-panel');
@@ -358,19 +362,14 @@ retryButton.addEventListener('click', function() {
     return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
-
 // Quit Button returns user to the main menu, resetting all variables
 quitButton.addEventListener('click', function() {
     const resetQuiz = function() {
-        // catch-all removal of active panel elements from previous states
-        removeActiveFailureMenuClass();
-        removeFailureBackgroundColor();
-        deselectAllInputs();
-        startVoid();
+        setDefaultState();
         // returns quiz to start menu state
         footerElementsVisible(startFooterElements);
         startMenu.classList.add('active-panel');
-        // resets variables for start menu state
+        // resets and returns variables for start menu state
         return nextButtonClickedCount = 0,
         correctAnswerCounter = 0,
         testCompleted = false,
