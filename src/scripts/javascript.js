@@ -30,14 +30,16 @@ const failedMenuAnswer = document.querySelector('#Failed-Menu-Answer');
 const failedMenuTime = document.querySelector('#Failed-Menu-Time');
 const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice');
 const winnerPanel = document.querySelector('#You-Won');
+const quittingPugPanel = document.querySelector('#Quitting-Pug');
 
 // button global variables
 const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
 const closeButton = document.querySelector('#Close-Button');
-const mainMenuButton = document.querySelector('#Main-Menu-Button');
+const retryButton = document.querySelector('#Retry-Button');
+const quitButton = document.querySelector('#Quit-Button');
 const currentButtonColor = lightSecondaryDark;
-let startButtonClickedCount = 0;
+let quizIterationCount = 0;
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -59,7 +61,7 @@ const questionThreeWrongAnswers = questionThreeForm.querySelectorAll('.wrong-ans
 // footer panels global variables
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
-const menuFooterElements = document.querySelector('#Main-Menu-Button-Wrap');
+const menuFooterElements = document.querySelector('#Retry-Button-Wrap');
 
 // timer global variables
 const minutesCounter = document.getElementById("timer-mins");
@@ -121,14 +123,18 @@ function currentWrongAnswersChecked(currentWrongAnswers) {
 function setFailureBackgroundColor() {
     headerHTML.classList.add('failure-background-color');
     footerHTML.classList.add('failure-background-color');
-    mainMenuButton.style.backgroundColor = darkErrorColor;
+    retryButton.style.backgroundColor = darkErrorColor;
+    quitButton.style.backgroundColor = darkErrorColor;
+
 }
 
 // function to remove footer & header background colors of failure message
 function removeFailureBackgroundColor() {
     headerHTML.classList.remove('failure-background-color');
     footerHTML.classList.remove('failure-background-color');
-    mainMenuButton.style.backgroundColor = currentButtonColor;
+    retryButton.style.backgroundColor = currentButtonColor;
+    quitButton.style.backgroundColor = currentButtonColor;
+
 }
 
 // function to activate the appropriate failure menu or notice based on the state
@@ -146,11 +152,12 @@ function activateFailureMenu(failureMenu) {
             break;
         case failedMenuTime:
             removeActiveQuestionClass();
+            removeActiveFailureMenuClass();
             failedMenuTime.classList.add('active-panel');
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
             setFailureBackgroundColor();
-            startButtonClickedCount = 0;
+            quizIterationCount = 0;
             break;
     }
 }
@@ -231,26 +238,9 @@ function footerElementsVisible(visibilitySelector) {
     }
 }
 
-// function to deterministicly select puppy image to display based upon screen size
-function puppyImageSelector() {
-    if (window.innerWidth > 992) {
-        puppiesMedium[testCompletedCounter].classList.add('active-panel');
-    } else {
-        puppiesSmall[testCompletedCounter].classList.add('active-panel');
-    }
-}
-
-
-// ********** EVENT HANDLER DECLERATIONS **********
-
-// Start Button begins Test
-startButton.addEventListener('click', function() {
-    startButtonClickedCount++;
-    footerElementsInvisible(startFooterElements);
-    footerElementsVisible(quizFooterElements);
-    startMenu.classList.remove('active-panel');
-    questions[0].classList.add('active-panel');
-    if (startButtonClickedCount < 2) {
+// function creates a timer at the initialization of the quiz
+function createTimer() {
+    if (quizIterationCount < 2) {
         // Creates a two minute timer countdown
         let countDownTime = (new Date(Date.now()).getTime() + ((2 * 60000) + 1000));
         // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, and extra second is added to allow for this latency (code seen in above line); the timer is hard-coded to start at 2 minutes in the HTML. Adjust the time will have to include adjusting the starting value in HTML.
@@ -277,7 +267,36 @@ startButton.addEventListener('click', function() {
             secondsCounter.innerHTML = "00";
         }, 1000);
     }
-    console.log("Start button hit: Test Complete value: " + testCompleted);
+}
+
+// function to deterministicly select puppy image to display based upon screen size
+function puppyImageSelector() {
+    if (window.innerWidth > 992) {
+        puppiesMedium[testCompletedCounter].classList.add('active-panel');
+    } else {
+        puppiesSmall[testCompletedCounter].classList.add('active-panel');
+    }
+}
+
+// function to act as a catch-all removal of active panel elements from previous states
+function setDefaultState() {
+    removeActiveFailureMenuClass();
+    removeFailureBackgroundColor();
+    deselectAllInputs();
+    startVoid();
+}
+
+
+// ********** EVENT HANDLER DECLERATIONS **********
+
+// Start Button begins Test
+startButton.addEventListener('click', function() {
+    quizIterationCount++;
+    footerElementsInvisible(startFooterElements);
+    footerElementsVisible(quizFooterElements);
+    startMenu.classList.remove('active-panel');
+    questions[0].classList.add('active-panel');
+    createTimer();
 });
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
@@ -311,30 +330,70 @@ closeButton.addEventListener('click', function() {
     nothingSelectedNotice.classList.remove('active-panel');
 });
 
-// Main Menu Button returns user the main menu starting screen
-mainMenuButton.addEventListener('click', function() {
-    removeActiveFailureMenuClass();
-    removeFailureBackgroundColor();
-    deselectAllInputs();
-    startVoid();
-    // resets quiz variables if user wishes to retake the quiz post victory
-    if (winnerPanel.classList.contains('active-panel')) {
-        winnerPanel.classList.remove('active-panel');
-        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
-        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+// Retry Button returns user to the first question of the quiz; if on winner panel, resets the timer.
+retryButton.addEventListener('click', function() {
+    const testCompletedChecker = function () {
         if (testCompletedCounter < 3) {
             testCompletedCounter++
         } else {
             testCompletedCounter = 0;
         }
-        testCompleted = false;
-        startButtonClickedCount = 0;
+        return testCompleted = false,
+        quizIterationCount = 0;
     }
-    footerElementsVisible(startFooterElements);
-    startMenu.classList.add('active-panel');
+    setDefaultState();
+    // resets quiz variables if user wishes to retake the quiz post victory
+    if (winnerPanel.classList.contains('active-panel')) {
+        winnerPanel.classList.remove('active-panel');
+        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
+        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+        testCompletedChecker();
+    } else if (quittingPugPanel.classList.contains('active-panel')) {
+        quittingPugPanel.classList.remove('active-panel');
+        testCompletedChecker();
+    }
+    // prepares question one of the quiz state
+    footerElementsVisible(quizFooterElements);
+    questions[0].classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
-    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+    quizIterationCount++;
+    createTimer();
+    return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+});
+
+// Quit Button returns user to the main menu, resetting all variables
+quitButton.addEventListener('click', function() {
+    const resetQuiz = function() {
+        setDefaultState();
+        // returns quiz to start menu state
+        footerElementsVisible(startFooterElements);
+        startMenu.classList.add('active-panel');
+        // resets and returns variables for start menu state
+        return nextButtonClickedCount = 0,
+        correctAnswerCounter = 0,
+        testCompleted = false,
+        testCompletedCounter = 0,
+        quizIterationCount = 0;
+    }
+    if (quittingPugPanel.classList.contains('active-panel')) {
+        quittingPugPanel.classList.remove('active-panel');
+        resetQuiz();
+    } else if (winnerPanel.classList.contains('active-panel')) {
+        winnerPanel.classList.remove('active-panel');
+        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
+        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+        footerElementsVisible(menuFooterElements);
+        quittingPugPanel.classList.add('active-panel');
+        setFailureBackgroundColor();
+    } else {
+        resetQuiz();
+    }
+    return nextButtonClickedCount,
+    correctAnswerCounter,
+    testCompleted,
+    testCompletedCounter,
+    quizIterationCount;
 });
 
 
