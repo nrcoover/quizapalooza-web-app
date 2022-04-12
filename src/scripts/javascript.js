@@ -146,6 +146,7 @@ function activateFailureMenu(failureMenu) {
             break;
         case failedMenuTime:
             removeActiveQuestionClass();
+            removeActiveFailureMenuClass();
             failedMenuTime.classList.add('active-panel');
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
