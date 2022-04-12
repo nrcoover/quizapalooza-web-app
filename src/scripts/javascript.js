@@ -35,7 +35,7 @@ const winnerPanel = document.querySelector('#You-Won');
 const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
 const closeButton = document.querySelector('#Close-Button');
-const mainMenuButton = document.querySelector('#Main-Menu-Button');
+const retryButton = document.querySelector('#Retry-Button');
 const quitButton = document.querySelector('#Quit-Button');
 const currentButtonColor = lightSecondaryDark;
 let startButtonClickedCount = 0;
@@ -60,7 +60,7 @@ const questionThreeWrongAnswers = questionThreeForm.querySelectorAll('.wrong-ans
 // footer panels global variables
 const quizFooterElements = document.querySelector('#Quiz-Button-Wrap');
 const startFooterElements = document.querySelector('#Start-Button-Wrap');
-const menuFooterElements = document.querySelector('#Main-Menu-Button-Wrap');
+const menuFooterElements = document.querySelector('#Retry-Button-Wrap');
 
 // timer global variables
 const minutesCounter = document.getElementById("timer-mins");
@@ -122,7 +122,7 @@ function currentWrongAnswersChecked(currentWrongAnswers) {
 function setFailureBackgroundColor() {
     headerHTML.classList.add('failure-background-color');
     footerHTML.classList.add('failure-background-color');
-    mainMenuButton.style.backgroundColor = darkErrorColor;
+    retryButton.style.backgroundColor = darkErrorColor;
     quitButton.style.backgroundColor = darkErrorColor;
 
 }
@@ -131,7 +131,7 @@ function setFailureBackgroundColor() {
 function removeFailureBackgroundColor() {
     headerHTML.classList.remove('failure-background-color');
     footerHTML.classList.remove('failure-background-color');
-    mainMenuButton.style.backgroundColor = currentButtonColor;
+    retryButton.style.backgroundColor = currentButtonColor;
     quitButton.style.backgroundColor = currentButtonColor;
 
 }
@@ -318,7 +318,7 @@ closeButton.addEventListener('click', function() {
 });
 
 // Main Menu Button returns user the main menu starting screen
-mainMenuButton.addEventListener('click', function() {
+retryButton.addEventListener('click', function() {
     removeActiveFailureMenuClass();
     removeFailureBackgroundColor();
     deselectAllInputs();
