@@ -58,7 +58,7 @@ label {
     margin-left: .5rem
 }
 
-#Start-Menu, #Nothing-Selected-Notice, #Failed-Menu-Answer, #Failed-Menu-Time {
+#Start-Menu, #Nothing-Selected-Notice, #Failed-Menu-Answer, #Failed-Menu-Time, #Quitting-Pug {
     background-color: $light-theme-background;
     padding: 1rem;
     border-radius: 15px;
@@ -100,6 +100,31 @@ label {
         border: 3px solid $light-theme-error-color;
         background-color: $light-theme-error-color-shadow;
         color: $light-theme-background;
+    }
+}
+
+#Quitting-Pug {
+    position: relative;
+    
+    .menu-content-wrap {
+        @include resetbox;
+        @include flexbox(column, center, center);
+        border: none;
+    }
+
+    #It-Me-Paragraph {
+        position: absolute;
+        top: 12.5%;
+    }
+
+    img {
+        width: 100%;
+        border: 3px solid $light-theme-error-color;
+        border-radius: 15px;
+    }
+
+    .small-paragraph {
+        margin-top: .5rem;
     }
 }
 

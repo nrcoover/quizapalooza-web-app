@@ -30,6 +30,7 @@ const failedMenuAnswer = document.querySelector('#Failed-Menu-Answer');
 const failedMenuTime = document.querySelector('#Failed-Menu-Time');
 const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice');
 const winnerPanel = document.querySelector('#You-Won');
+const quittingPugPanel = document.querySelector('#Quitting-Pug');
 
 // button global variables
 const startButton = document.querySelector('#Start-Button');
