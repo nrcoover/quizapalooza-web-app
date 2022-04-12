@@ -36,6 +36,7 @@ const startButton = document.querySelector('#Start-Button');
 const nextButton = document.querySelector('#Next-Button');
 const closeButton = document.querySelector('#Close-Button');
 const mainMenuButton = document.querySelector('#Main-Menu-Button');
+const quitButton = document.querySelector('#Quit-Button');
 const currentButtonColor = lightSecondaryDark;
 let startButtonClickedCount = 0;
 
@@ -122,6 +123,8 @@ function setFailureBackgroundColor() {
     headerHTML.classList.add('failure-background-color');
     footerHTML.classList.add('failure-background-color');
     mainMenuButton.style.backgroundColor = darkErrorColor;
+    quitButton.style.backgroundColor = darkErrorColor;
+
 }
 
 // function to remove footer & header background colors of failure message
@@ -129,6 +132,8 @@ function removeFailureBackgroundColor() {
     headerHTML.classList.remove('failure-background-color');
     footerHTML.classList.remove('failure-background-color');
     mainMenuButton.style.backgroundColor = currentButtonColor;
+    quitButton.style.backgroundColor = currentButtonColor;
+
 }
 
 // function to activate the appropriate failure menu or notice based on the state
@@ -328,6 +333,28 @@ mainMenuButton.addEventListener('click', function() {
         } else {
             testCompletedCounter = 0;
         }
+        testCompleted = false;
+        startButtonClickedCount = 0;
+    }
+    footerElementsVisible(startFooterElements);
+    startMenu.classList.add('active-panel');
+    nextButtonClickedCount = 0;
+    correctAnswerCounter = 0;
+    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+});
+
+// Quit Button returns user to the main menu, resetting all variables
+quitButton.addEventListener('click', function() {
+    removeActiveFailureMenuClass();
+    removeFailureBackgroundColor();
+    deselectAllInputs();
+    startVoid();
+    // resets quiz variables if user wishes to retake the quiz post victory
+    if (winnerPanel.classList.contains('active-panel')) {
+        winnerPanel.classList.remove('active-panel');
+        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
+        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+        testCompletedCounter = 0;
         testCompleted = false;
         startButtonClickedCount = 0;
     }
