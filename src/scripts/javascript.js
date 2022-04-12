@@ -291,6 +291,7 @@ nextButton.addEventListener('click', function() {
             removeActiveQuestionClass();
             if(questions[nextButtonClickedCount]) {
                 questions[(nextButtonClickedCount)].classList.add('active-panel');
+            // activates Test Completion (or "Winner's") Screen
             } else {
                 winnerPanel.classList.add('active-panel');
                 puppyImageSelector();
