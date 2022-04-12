@@ -38,7 +38,7 @@ const closeButton = document.querySelector('#Close-Button');
 const retryButton = document.querySelector('#Retry-Button');
 const quitButton = document.querySelector('#Quit-Button');
 const currentButtonColor = lightSecondaryDark;
-let startButtonClickedCount = 0;
+let quizIterationCount = 0;
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
@@ -156,7 +156,7 @@ function activateFailureMenu(failureMenu) {
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
             setFailureBackgroundColor();
-            startButtonClickedCount = 0;
+            quizIterationCount = 0;
             break;
     }
 }
@@ -251,12 +251,12 @@ function puppyImageSelector() {
 
 // Start Button begins Test
 startButton.addEventListener('click', function() {
-    startButtonClickedCount++;
+    quizIterationCount++;
     footerElementsInvisible(startFooterElements);
     footerElementsVisible(quizFooterElements);
     startMenu.classList.remove('active-panel');
     questions[0].classList.add('active-panel');
-    if (startButtonClickedCount < 2) {
+    if (quizIterationCount < 2) {
         // Creates a two minute timer countdown
         let countDownTime = (new Date(Date.now()).getTime() + ((2 * 60000) + 1000));
         // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, and extra second is added to allow for this latency (code seen in above line); the timer is hard-coded to start at 2 minutes in the HTML. Adjust the time will have to include adjusting the starting value in HTML.
@@ -334,13 +334,13 @@ retryButton.addEventListener('click', function() {
             testCompletedCounter = 0;
         }
         testCompleted = false;
-        startButtonClickedCount = 0;
+        quizIterationCount = 0;
     }
     footerElementsVisible(startFooterElements);
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
-    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+    return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
 // Quit Button returns user to the main menu, resetting all variables
@@ -356,13 +356,13 @@ quitButton.addEventListener('click', function() {
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
         testCompletedCounter = 0;
         testCompleted = false;
-        startButtonClickedCount = 0;
+        quizIterationCount = 0;
     }
     footerElementsVisible(startFooterElements);
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
-    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+    return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
 
