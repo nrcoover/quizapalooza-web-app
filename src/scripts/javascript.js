@@ -288,7 +288,6 @@ startButton.addEventListener('click', function() {
     startMenu.classList.remove('active-panel');
     questions[0].classList.add('active-panel');
     createTimer();
-    console.log("Start button hit: Test Complete value: " + testCompleted);
 });
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
@@ -322,8 +321,9 @@ closeButton.addEventListener('click', function() {
     nothingSelectedNotice.classList.remove('active-panel');
 });
 
-// Main Menu Button returns user the main menu starting screen
+// Retry Button returns user to the first question of the quiz; if on winner panel, resets the timer.
 retryButton.addEventListener('click', function() {
+    // resets quiz state, removing active panels
     removeActiveFailureMenuClass();
     removeFailureBackgroundColor();
     deselectAllInputs();
@@ -341,10 +341,13 @@ retryButton.addEventListener('click', function() {
         testCompleted = false;
         quizIterationCount = 0;
     }
-    footerElementsVisible(startFooterElements);
-    startMenu.classList.add('active-panel');
+    // prepares question one of the quiz state
+    footerElementsVisible(quizFooterElements);
+    questions[0].classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
+    quizIterationCount++;
+    createTimer();
     return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
