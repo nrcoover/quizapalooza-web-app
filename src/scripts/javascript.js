@@ -324,6 +324,15 @@ closeButton.addEventListener('click', function() {
 
 // Retry Button returns user to the first question of the quiz; if on winner panel, resets the timer.
 retryButton.addEventListener('click', function() {
+    const testCompletedChecker = function () {
+        if (testCompletedCounter < 3) {
+            testCompletedCounter++
+        } else {
+            testCompletedCounter = 0;
+        }
+        return testCompleted = false,
+        quizIterationCount = 0;
+    }
     // resets quiz state, removing active panels
     removeActiveFailureMenuClass();
     removeFailureBackgroundColor();
@@ -334,13 +343,10 @@ retryButton.addEventListener('click', function() {
         winnerPanel.classList.remove('active-panel');
         puppiesSmall[testCompletedCounter].classList.remove('active-panel');
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
-        if (testCompletedCounter < 3) {
-            testCompletedCounter++
-        } else {
-            testCompletedCounter = 0;
-        }
-        testCompleted = false;
-        quizIterationCount = 0;
+        testCompletedChecker();
+    } else if (quittingPugPanel.classList.contains('active-panel')) {
+        quittingPugPanel.classList.remove('active-panel');
+        testCompletedChecker();
     }
     // prepares question one of the quiz state
     footerElementsVisible(quizFooterElements);
