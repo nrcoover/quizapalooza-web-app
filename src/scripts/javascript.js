@@ -70,6 +70,8 @@ const secondsCounter = document.getElementById("timer-secs");
 // test completion and puppy images global variables
 const puppiesSmall = document.getElementsByClassName('puppies-small-img');
 const puppiesMedium = document.getElementsByClassName('puppies-medium-img');
+const quittingPugSmall = document.getElementsByClassName('quitting-pug-small');
+const quittingPugMedium = document.getElementsByClassName('quitting-pug-medium');
 let testCompleted = false;
 let testCompletedCounter = 0;
 
@@ -274,12 +276,23 @@ function createTimer() {
     }
 }
 
-// function to deterministicly select puppy image to display based upon screen size
+// function to deterministically select puppy image to display based upon screen size
 function puppyImageSelector() {
     if (window.innerWidth > 992) {
         puppiesMedium[testCompletedCounter].classList.add('active-panel');
     } else {
         puppiesSmall[testCompletedCounter].classList.add('active-panel');
+    }
+}
+
+// function to deterministically select quitting pug image to display based upon screen size
+function quittingPugImageSelector() {
+    if (window.innerWidth > 992) {
+        quittingPugSmall[0].classList.remove('active-panel');
+        quittingPugMedium[0].classList.add('active-panel');
+    } else {
+        quittingPugMedium[0].classList.remove('active-panel');
+        quittingPugSmall[0].classList.add('active-panel');
     }
 }
 
@@ -395,6 +408,7 @@ quitButton.addEventListener('click', function() {
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
         footerElementsVisible(menuFooterElements);
         quittingPugPanel.classList.add('active-panel');
+        quittingPugImageSelector();
         setFailureBackgroundColor();
     } else {
         resetQuiz();
