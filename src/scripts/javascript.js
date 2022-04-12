@@ -358,26 +358,43 @@ retryButton.addEventListener('click', function() {
     return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
+
 // Quit Button returns user to the main menu, resetting all variables
 quitButton.addEventListener('click', function() {
-    removeActiveFailureMenuClass();
-    removeFailureBackgroundColor();
-    deselectAllInputs();
-    startVoid();
-    // resets quiz variables if user wishes to retake the quiz post victory
-    if (winnerPanel.classList.contains('active-panel')) {
+    const resetQuiz = function() {
+        // catch-all removal of active panel elements from previous states
+        removeActiveFailureMenuClass();
+        removeFailureBackgroundColor();
+        deselectAllInputs();
+        startVoid();
+        // returns quiz to start menu state
+        footerElementsVisible(startFooterElements);
+        startMenu.classList.add('active-panel');
+        // resets variables for start menu state
+        return nextButtonClickedCount = 0,
+        correctAnswerCounter = 0,
+        testCompleted = false,
+        testCompletedCounter = 0,
+        quizIterationCount = 0;
+    }
+    if (quittingPugPanel.classList.contains('active-panel')) {
+        quittingPugPanel.classList.remove('active-panel');
+        resetQuiz();
+    } else if (winnerPanel.classList.contains('active-panel')) {
         winnerPanel.classList.remove('active-panel');
         puppiesSmall[testCompletedCounter].classList.remove('active-panel');
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
-        testCompleted = false;
-        quizIterationCount = 0;
+        footerElementsVisible(menuFooterElements);
+        quittingPugPanel.classList.add('active-panel');
+        setFailureBackgroundColor();
+    } else {
+        resetQuiz();
     }
-    footerElementsVisible(startFooterElements);
-    startMenu.classList.add('active-panel');
-    nextButtonClickedCount = 0;
-    correctAnswerCounter = 0;
-    testCompletedCounter = 0;
-    return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+    return nextButtonClickedCount,
+    correctAnswerCounter,
+    testCompleted,
+    testCompletedCounter,
+    quizIterationCount;
 });
 
 
