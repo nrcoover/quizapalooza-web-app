@@ -1,6 +1,6 @@
 // ********** GLOBAL VARIABLES DECLERATIONS **********
 
-// light theme color variables
+// light theme color global variables
 const lightBase = '#bdbdbd';
 const lightBackground = '#FFFFFF';
 const lightShadow = 'rgba(18, 18, 18, .3)';
@@ -10,7 +10,7 @@ const lightSecondary = '#03DAC6';
 const lightSecondaryDark = '#018786';
 const lightErrorColor = '#B00020';
 
-// dark theme color variables
+// dark theme color global variables
 const darkBase = '#1d1d1d';
 const darkBackground = '#121212';
 const darkShadow = 'rgba(255, 255, 255, .1)'
@@ -19,7 +19,7 @@ const darkPrimaryDark = '#3700B3';
 const darkSecondary = '#03DAC6';
 const darkErrorColor = '#CF6679';
 
-// html elemnts variables
+// html elemnts global variables
 const headerHTML = document.querySelector('header');
 const footerHTML = document.querySelector('footer');
 
@@ -65,8 +65,11 @@ const menuFooterElements = document.querySelector('#Main-Menu-Button-Wrap');
 const minutesCounter = document.getElementById("timer-mins");
 const secondsCounter = document.getElementById("timer-secs");
 
-// boolean variables
-    testCompleted = false;
+// test completion and puppy images global variables
+const puppiesSmall = document.getElementsByClassName('puppies-small-img');
+const puppiesMedium = document.getElementsByClassName('puppies-medium-img');
+let testCompleted = false;
+let testCompletedCounter = 0;
 
 
 // ********** START VOID **********
@@ -228,6 +231,15 @@ function footerElementsVisible(visibilitySelector) {
     }
 }
 
+// function to deterministicly select puppy image to display based upon screen size
+function puppyImageSelector() {
+    if (window.innerWidth > 992) {
+        puppiesMedium[testCompletedCounter].classList.add('active-panel');
+    } else {
+        puppiesSmall[testCompletedCounter].classList.add('active-panel');
+    }
+}
+
 
 // ********** EVENT HANDLER DECLERATIONS **********
 
@@ -281,6 +293,7 @@ nextButton.addEventListener('click', function() {
                 questions[(nextButtonClickedCount)].classList.add('active-panel');
             } else {
                 winnerPanel.classList.add('active-panel');
+                puppyImageSelector();
                 footerElementsInvisible(quizFooterElements);
                 footerElementsVisible(menuFooterElements);
             }
@@ -306,6 +319,13 @@ mainMenuButton.addEventListener('click', function() {
     // resets quiz variables if user wishes to retake the quiz post victory
     if (winnerPanel.classList.contains('active-panel')) {
         winnerPanel.classList.remove('active-panel');
+        puppiesSmall[testCompletedCounter].classList.remove('active-panel');
+        puppiesMedium[testCompletedCounter].classList.remove('active-panel');
+        if (testCompletedCounter < 3) {
+            testCompletedCounter++
+        } else {
+            testCompletedCounter = 0;
+        }
         testCompleted = false;
         startButtonClickedCount = 0;
     }
@@ -313,7 +333,7 @@ mainMenuButton.addEventListener('click', function() {
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
-    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted;
+    return nextButtonClickedCount, startButtonClickedCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
 
