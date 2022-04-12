@@ -157,8 +157,7 @@ function activateFailureMenu(failureMenu) {
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
             setFailureBackgroundColor();
-            quizIterationCount = 0;
-            break;
+            return quizIterationCount = 0;
     }
 }
 
@@ -242,6 +241,12 @@ function footerElementsVisible(visibilitySelector) {
 function createTimer() {
     if (quizIterationCount < 2) {
         // Creates a two minute timer countdown
+        quitButton.addEventListener('click', function() {
+            console.log("YIPPIE!");
+            clearInterval(timer);
+            minutesCounter.innerHTML = "02";
+            secondsCounter.innerHTML = "00";
+        });
         let countDownTime = (new Date(Date.now()).getTime() + ((2 * 60000) + 1000));
         // In practice, it has been taking 2 seconds for the timer to load and appear on screen, therefore, and extra second is added to allow for this latency (code seen in above line); the timer is hard-coded to start at 2 minutes in the HTML. Adjust the time will have to include adjusting the starting value in HTML.
         const timer = setInterval(function() {
@@ -262,10 +267,10 @@ function createTimer() {
                 activateFailureMenu(failedMenuTime);
             }
             clearInterval(timer);
-            document.getElementById
             minutesCounter.innerHTML = "02";
             secondsCounter.innerHTML = "00";
         }, 1000);
+        quitButton.removeEventListener('click', function() {});
     }
 }
 
@@ -359,11 +364,16 @@ retryButton.addEventListener('click', function() {
     correctAnswerCounter = 0;
     quizIterationCount++;
     createTimer();
-    return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
+    return nextButtonClickedCount,
+    quizIterationCount,
+    correctAnswerCounter,
+    testCompleted,
+    testCompletedCounter;
 });
 
 // Quit Button returns user to the main menu, resetting all variables
 quitButton.addEventListener('click', function() {
+    // notifies createTimer() function that the Quit Button has been pressed and so the timer should end.
     const resetQuiz = function() {
         setDefaultState();
         // returns quiz to start menu state
