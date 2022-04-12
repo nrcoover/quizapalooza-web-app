@@ -237,25 +237,8 @@ function footerElementsVisible(visibilitySelector) {
     }
 }
 
-// function to deterministicly select puppy image to display based upon screen size
-function puppyImageSelector() {
-    if (window.innerWidth > 992) {
-        puppiesMedium[testCompletedCounter].classList.add('active-panel');
-    } else {
-        puppiesSmall[testCompletedCounter].classList.add('active-panel');
-    }
-}
-
-
-// ********** EVENT HANDLER DECLERATIONS **********
-
-// Start Button begins Test
-startButton.addEventListener('click', function() {
-    quizIterationCount++;
-    footerElementsInvisible(startFooterElements);
-    footerElementsVisible(quizFooterElements);
-    startMenu.classList.remove('active-panel');
-    questions[0].classList.add('active-panel');
+// function creates a timer at the initialization of the quiz
+function createTimer() {
     if (quizIterationCount < 2) {
         // Creates a two minute timer countdown
         let countDownTime = (new Date(Date.now()).getTime() + ((2 * 60000) + 1000));
@@ -283,6 +266,28 @@ startButton.addEventListener('click', function() {
             secondsCounter.innerHTML = "00";
         }, 1000);
     }
+}
+
+// function to deterministicly select puppy image to display based upon screen size
+function puppyImageSelector() {
+    if (window.innerWidth > 992) {
+        puppiesMedium[testCompletedCounter].classList.add('active-panel');
+    } else {
+        puppiesSmall[testCompletedCounter].classList.add('active-panel');
+    }
+}
+
+
+// ********** EVENT HANDLER DECLERATIONS **********
+
+// Start Button begins Test
+startButton.addEventListener('click', function() {
+    quizIterationCount++;
+    footerElementsInvisible(startFooterElements);
+    footerElementsVisible(quizFooterElements);
+    startMenu.classList.remove('active-panel');
+    questions[0].classList.add('active-panel');
+    createTimer();
     console.log("Start button hit: Test Complete value: " + testCompleted);
 });
 
