@@ -362,7 +362,6 @@ quitButton.addEventListener('click', function() {
         winnerPanel.classList.remove('active-panel');
         puppiesSmall[testCompletedCounter].classList.remove('active-panel');
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
-        testCompletedCounter = 0;
         testCompleted = false;
         quizIterationCount = 0;
     }
@@ -370,6 +369,7 @@ quitButton.addEventListener('click', function() {
     startMenu.classList.add('active-panel');
     nextButtonClickedCount = 0;
     correctAnswerCounter = 0;
+    testCompletedCounter = 0;
     return nextButtonClickedCount, quizIterationCount, correctAnswerCounter, testCompleted, testCompletedCounter;
 });
 
