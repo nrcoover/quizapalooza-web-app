@@ -244,7 +244,6 @@ function createTimer() {
     if (quizIterationCount < 2) {
         // Creates a two minute timer countdown
         quitButton.addEventListener('click', function() {
-            console.log("YIPPIE!");
             clearInterval(timer);
             minutesCounter.innerHTML = "02";
             secondsCounter.innerHTML = "00";
