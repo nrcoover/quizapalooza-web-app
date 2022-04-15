@@ -1,8 +1,12 @@
+@use "mixins" as *;
+
 /* MEDIA QUERY TEMPLATE FROM https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (min-width: 500px) {
-
+@media only screen and (min-width: 470px) {
+    .question {
+        @include panelBackgroundMain;
+    }
 }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */
