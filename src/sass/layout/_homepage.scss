@@ -10,6 +10,7 @@ body {
 
 main {
     height: auto;
+    max-width: $max-width;
     padding: 2rem;
     width: 100%;
 }
@@ -45,13 +46,16 @@ h4 {
 
 p {
     @include fontline(1.3rem, 1.6rem);
+    margin: 0 auto;
+    max-width: $text-max-width;
 }
 
 input, label {
     @include fontline(1.2rem, 1.4rem);
     font-family: $current-font;
     margin-left: 1.2rem;
-    margin-bottom: 1.2rem; 
+    margin-bottom: 1.2rem;
+    max-width: $text-max-width;
 }
 
 label {

@@ -1,4 +1,5 @@
 @use "../abstracts/index" as *;
+@use "../base/index" as *;
 
 footer {
     background-color: $light-theme-primary-dark;
@@ -47,6 +48,7 @@ footer {
     @include flexbox(row, space-between, center);
     height: auto;
     margin: 0 auto;
+    max-width: $max-width;
     padding: 2rem 2rem 3rem;
     width: 100%;
 }
