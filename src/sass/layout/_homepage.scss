@@ -63,10 +63,7 @@ label {
 }
 
 #Start-Menu, #Nothing-Selected-Notice, #Failed-Menu-Answer, #Failed-Menu-Time, #Quitting-Pug {
-    background-color: $light-theme-background;
-    padding: 1rem;
-    border-radius: 15px;
-    box-shadow: 0 0 5px $light-theme-shadow;
+    @include panelBackgroundMain;
     
     p {
         text-align: justify;

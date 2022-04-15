@@ -2,6 +2,7 @@
 @use "sass:meta";
 @use "sass:math";
 @use "breakpoints" as *;
+@use "colors" as *;
 
 
 // Acquired from Kevin Powell: https://www.youtube.com/watch?v=7ruDsUN4-iA&t=0s
@@ -104,4 +105,11 @@
 @mixin resetbox {
    margin: 0 0;
    padding: 0 0;
+}
+
+@mixin panelBackgroundMain {
+   background-color: $light-theme-background;
+   padding: 1rem;
+   border-radius: 15px;
+   box-shadow: 0 0 5px $light-theme-shadow;
 }
