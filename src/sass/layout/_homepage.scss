@@ -76,6 +76,10 @@ input[type="radio"]:checked {
     transform: translate(-2px, -2px);
 }
 
+input:hover {
+    cursor: pointer;
+}
+
 label {
     margin-left: .5rem
 }
