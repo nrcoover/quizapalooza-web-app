@@ -162,6 +162,11 @@ function activateFailureMenu(failureMenu) {
             footerElementsInvisible(quizFooterElements);
             footerElementsVisible(menuFooterElements);
             setFailureBackgroundColor();
+            // removes Nothing-Selected-Panel in case times runs out during this notification sequence.
+            if (nothingSelectedNotice.classList.contains('active-panel')) {
+                nothingSelectedNotice.classList.remove('active-panel');
+                shadowPanel[0].classList.add('hidden');
+            }
             return quizIterationCount = 0;
     }
 }
