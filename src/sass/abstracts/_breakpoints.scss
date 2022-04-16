@@ -19,8 +19,6 @@
         border: 20px solid transparent;
         border-radius: 25px;
         padding: clamp(2rem, 1rem + 10vw, 3rem);
-        
-
     }
 }
 
@@ -41,5 +39,8 @@
 
 /* Extra large devices (large laptops and desktops, 1200px and up) */
 @media only screen and (min-width: 1200px) {
-
+    body {
+        background-image:
+            linear-gradient(to right, $light-theme-background, $light-theme-base, $light-theme-base, $light-theme-base, $light-theme-base, $light-theme-base, $light-theme-background);
+    }
 }
