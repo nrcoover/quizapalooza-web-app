@@ -80,6 +80,7 @@ let testCompletedCounter = 0;
 // ********** START VOID **********
 startVoid();
 // the above code line is necessary due to an unresolved bug that causes this element to be visible upon page load, but it shouldn't be visible until after the user presses the start button.
+changeBackgroundColor();
 
 
 // ********** FUNCTION DECLERATIONS **********
@@ -305,6 +306,19 @@ function setDefaultState() {
     startVoid();
 }
 
+// function changes background color for starter panel and quitting-pug panel
+function changeBackgroundColor() {
+    if (startMenu.classList.contains('active-panel') || quittingPugPanel[0].classList.contains('active-panel')) {
+        document.body.style.backgroundColor=lightBase;
+    } else {
+        if (window.innerWidth > 460) {
+            document.body.style.backgroundColor=lightBase;
+        } else {
+            document.body.style.backgroundColor=lightBackground;
+        }
+    }
+}
+
 
 // ********** EVENT HANDLER DECLERATIONS **********
 
@@ -316,6 +330,7 @@ startButton.addEventListener('click', function() {
     startMenu.classList.remove('active-panel');
     questions[0].classList.add('active-panel');
     createTimer();
+    changeBackgroundColor();
 });
 
 // Next Button Moves Through Questions when Correct Answer is Selected {
@@ -341,7 +356,8 @@ nextButton.addEventListener('click', function() {
         }
     } else {
         wrongAnswerChecked();
-    }   
+    }
+    changeBackgroundColor();
 });
 
 // Close Button closes the "Nothing Was Selected" Notice
@@ -379,6 +395,7 @@ retryButton.addEventListener('click', function() {
     correctAnswerCounter = 0;
     quizIterationCount++;
     createTimer();
+    changeBackgroundColor();
     return nextButtonClickedCount,
     quizIterationCount,
     correctAnswerCounter,
@@ -412,9 +429,11 @@ quitButton.addEventListener('click', function() {
         quittingPugPanel.classList.add('active-panel');
         quittingPugImageSelector();
         setFailureBackgroundColor();
+        changeBackgroundColor();
     } else {
         resetQuiz();
     }
+    changeBackgroundColor();
     return nextButtonClickedCount,
     correctAnswerCounter,
     testCompleted,
