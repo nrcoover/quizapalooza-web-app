@@ -80,6 +80,15 @@ label {
     margin-left: .5rem
 }
 
+#Shadow-Panel {
+    background-color: rgba(0, 0, 0, .4);
+    height: 100%;
+    min-width: 330px;
+    position: absolute;
+    width: 100%;
+    z-index: 5;
+}
+
 #Start-Menu, #Nothing-Selected-Notice, #Failed-Menu-Answer, #Failed-Menu-Time, #Quitting-Pug {
     @include panelBackgroundMain;
     

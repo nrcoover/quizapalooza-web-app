@@ -22,6 +22,7 @@ const darkErrorColor = '#CF6679';
 // html elemnts global variables
 const headerHTML = document.querySelector('header');
 const footerHTML = document.querySelector('footer');
+const shadowPanel = document.getElementsByClassName('shadow-panel');
 
 // menu global variables
 const startMenu = document.querySelector('#Start-Menu');
@@ -144,6 +145,7 @@ function activateFailureMenu(failureMenu) {
     switch (failureMenu) {
         default:
             nothingSelectedNotice.classList.add('active-panel');
+            shadowPanel[0].classList.remove('hidden');
             break;
         case failedMenuAnswer:
             removeActiveQuestionClass();
@@ -345,6 +347,7 @@ nextButton.addEventListener('click', function() {
 // Close Button closes the "Nothing Was Selected" Notice
 closeButton.addEventListener('click', function() {
     nothingSelectedNotice.classList.remove('active-panel');
+    shadowPanel[0].classList.add('hidden');
 });
 
 // Retry Button returns user to the first question of the quiz; if on winner panel, resets the timer.
