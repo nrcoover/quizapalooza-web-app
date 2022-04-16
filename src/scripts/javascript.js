@@ -441,6 +441,10 @@ quitButton.addEventListener('click', function() {
     quizIterationCount;
 });
 
+// Window resize checks to make sure body background color is accurate based upon window size
+window.addEventListener('resize', function() {
+    changeBackgroundColor();
+});
 
 // // FOR DEBUGGING
 // const addAllButton = document.querySelector('#Add-All-Button');
