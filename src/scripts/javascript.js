@@ -44,12 +44,12 @@ let quizIterationCount = 0;
 
 // question collections global variables
 const questions = document.getElementsByClassName('question');
-const questionOne = document.querySelector('#Question_One');
-const questionTwo = document.querySelector('#Question_Two');
-const questionThree = document.querySelector('#Question_Three');
-const questionOneForm = document.querySelector('#Question_One > form');
-const questionTwoForm = document.querySelector('#Question_Two > form');
-const questionThreeForm = document.querySelector('#Question_Three > form');
+const questionOne = document.querySelector('#Question-One');
+const questionTwo = document.querySelector('#Question-Two');
+const questionThree = document.querySelector('#Question-Three');
+const questionOneForm = document.querySelector('#Question-One > form');
+const questionTwoForm = document.querySelector('#Question-Two > form');
+const questionThreeForm = document.querySelector('#Question-Three > form');
 
 // answer collections global variables
 const allAnswers = document.querySelectorAll('.answer');
@@ -184,13 +184,13 @@ function wrongAnswerChecked() {
     let currentQuestion = checkForActiveQuestion();
     // Selects only the group of wrong answers from the current question
     switch (currentQuestion) {
-        case "Question_One":
+        case "Question-One":
             currentWrongAnswersCheckedSelector(questionOneWrongAnswers);
             break;
-        case "Question_Two":
+        case "Question-Two":
             currentWrongAnswersCheckedSelector(questionTwoWrongAnswers);
             break;
-        case "Question_Three":
+        case "Question-Three":
             currentWrongAnswersCheckedSelector(questionThreeWrongAnswers);
             break;
         default:
