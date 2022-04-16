@@ -38,7 +38,7 @@ footer {
 .container-timer {
     @include resetbox;
     @include flexbox(column, center, center);
-    background-color: $light-theme-base;
+    background-color: $light-theme-background;
     color: black;
     height: 3.5rem;
 }

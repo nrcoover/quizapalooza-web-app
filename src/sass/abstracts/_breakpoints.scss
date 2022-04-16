@@ -1,11 +1,26 @@
 @use "mixins" as *;
+@use "colors" as *;
 
 /* MEDIA QUERY TEMPLATE FROM https://www.w3schools.com/css/css_rwd_mediaqueries.asp */
 
 /* Extra small devices (phones, 600px and down) */
-@media only screen and (min-width: 470px) {
-    .question {
+@media only screen and (min-width: 460px) {
+    html, body {
+        background-color: $light-theme-base;
+    }
+
+    .question, .winner-panel {
         @include panelBackgroundMain;
+        // border: 5px solid $light-theme-primary;
+        accent-color: $light-theme-primary;
+        background: 
+            linear-gradient($light-theme-background, $light-theme-background) padding-box,
+            linear-gradient(to bottom, $light-theme-primary, $light-theme-primary-dark) border-box;
+        border: 20px solid transparent;
+        border-radius: 25px;
+        padding: clamp(2rem, 1rem + 10vw, 3rem);
+        
+
     }
 }
 
