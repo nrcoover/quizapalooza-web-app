@@ -164,8 +164,7 @@ function activateFailureMenu(failureMenu) {
             setFailureBackgroundColor();
             // removes Nothing-Selected-Panel in case times runs out during this notification sequence.
             if (nothingSelectedNotice.classList.contains('active-panel')) {
-                nothingSelectedNotice.classList.remove('active-panel');
-                shadowPanel[0].classList.add('hidden');
+                removeNothingSelectedDisplay()
             }
             return quizIterationCount = 0;
     }
@@ -324,6 +323,12 @@ function changeBackgroundColor() {
     }
 }
 
+// function removes components of Nothing Selected Panel Display from DOM
+function removeNothingSelectedDisplay() {
+    nothingSelectedNotice.classList.remove('active-panel');
+    shadowPanel[0].classList.add('hidden');
+}
+
 
 // ********** EVENT HANDLER DECLERATIONS **********
 
@@ -367,8 +372,7 @@ nextButton.addEventListener('click', function() {
 
 // Close Button closes the "Nothing Was Selected" Notice
 closeButton.addEventListener('click', function() {
-    nothingSelectedNotice.classList.remove('active-panel');
-    shadowPanel[0].classList.add('hidden');
+    removeNothingSelectedDisplay()
 });
 
 // Retry Button returns user to the first question of the quiz; if on winner panel, resets the timer.
