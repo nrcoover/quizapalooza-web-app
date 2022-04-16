@@ -19,7 +19,7 @@ const darkPrimaryDark = '#3700B3';
 const darkSecondary = '#03DAC6';
 const darkErrorColor = '#CF6679';
 
-// html elemnts global variables
+// html elements global variables
 const headerHTML = document.querySelector('header');
 const footerHTML = document.querySelector('footer');
 const shadowPanel = document.getElementsByClassName('shadow-panel');
@@ -31,7 +31,7 @@ const failedMenuAnswer = document.querySelector('#Failed-Menu-Answer');
 const failedMenuTime = document.querySelector('#Failed-Menu-Time');
 const nothingSelectedNotice = document.querySelector('#Nothing-Selected-Notice');
 const winnerPanel = document.querySelector('#You-Won');
-const quittingPugPanel = document.querySelector('#Quitting-Pug');
+const quittingPugPanel = document.getElementsByClassName('quitting-pug');
 
 // button global variables
 const startButton = document.querySelector('#Start-Button');
@@ -384,8 +384,8 @@ retryButton.addEventListener('click', function() {
         puppiesSmall[testCompletedCounter].classList.remove('active-panel');
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
         testCompletedChecker();
-    } else if (quittingPugPanel.classList.contains('active-panel')) {
-        quittingPugPanel.classList.remove('active-panel');
+    } else if (quittingPugPanel[0].classList.contains('active-panel')) {
+        quittingPugPanel[0].classList.remove('active-panel');
         testCompletedChecker();
     }
     // prepares question one of the quiz state
@@ -418,15 +418,15 @@ quitButton.addEventListener('click', function() {
         testCompletedCounter = 0,
         quizIterationCount = 0;
     }
-    if (quittingPugPanel.classList.contains('active-panel')) {
-        quittingPugPanel.classList.remove('active-panel');
+    if (quittingPugPanel[0].classList.contains('active-panel')) {
+        quittingPugPanel[0].classList.remove('active-panel');
         resetQuiz();
     } else if (winnerPanel.classList.contains('active-panel')) {
         winnerPanel.classList.remove('active-panel');
         puppiesSmall[testCompletedCounter].classList.remove('active-panel');
         puppiesMedium[testCompletedCounter].classList.remove('active-panel');
         footerElementsVisible(menuFooterElements);
-        quittingPugPanel.classList.add('active-panel');
+        quittingPugPanel[0].classList.add('active-panel');
         quittingPugImageSelector();
         setFailureBackgroundColor();
         changeBackgroundColor();
