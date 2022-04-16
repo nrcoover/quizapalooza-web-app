@@ -4,7 +4,7 @@
 body {
     @include flexbox(column, space-between, center);
     font-size: 18px;
-    height: 100vh;
+    min-height: 100vh;
     min-width: 330px;
 }
 
