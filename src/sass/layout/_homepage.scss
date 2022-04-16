@@ -134,6 +134,7 @@ label {
 
 #Quitting-Pug {
     position: relative;
+    padding-top: 2rem;
     
     .menu-content-wrap {
         @include resetbox;
@@ -147,9 +148,10 @@ label {
     }
 
     img {
-        width: 100%;
         border: 3px solid $light-theme-error-color;
         border-radius: 8px;
+        max-height: 40rem;
+        max-width: 100%;
     }
 
     .small-paragraph {
