@@ -147,7 +147,7 @@ label {
     }
 
     img {
-        width: 100%;
+        max-width: 100%;
         border: 3px solid $light-theme-error-color;
         border-radius: 8px;
     }
